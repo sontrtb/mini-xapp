@@ -4,14 +4,14 @@ import {
     closeApp,
     configUIApp,
     EKeyInfor,
-    EPremissionsType,
+    // EPremissionsType,
     FlutterMessageResponse,
     getInfo,
     IViewUiConfig,
     openPickerImage,
-    premissionsRequest,
+    // premissionsRequest,
     vibrate
-} from "../../../x-app-sdk";
+} from "x-app-sdk";
 import { XButton } from "x-app-ui";
 
 function SDKPage() {
@@ -47,8 +47,8 @@ function SDKPage() {
     }
 
     const requestPermisstion = async () => {
-        const res = await premissionsRequest(EPremissionsType.LOCATION)
-        setData(res as FlutterMessageResponse)
+        // const res = await premissionsRequest(EPremissionsType.LOCATION)
+        // setData(res as FlutterMessageResponse)
     }
 
     return (
