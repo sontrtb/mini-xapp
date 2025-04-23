@@ -1,0 +1,29 @@
+.ui-card {
+    background-color: var(--bg-color);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+  }
+  
+  .ui-card-header {
+    padding: 1.25rem 1.25rem 0;
+  }
+  
+  .ui-card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  
+  .ui-card-content {
+    padding: 1.25rem;
+  }
+  
+  .ui-card-footer {
+    padding: 0 1.25rem 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+  

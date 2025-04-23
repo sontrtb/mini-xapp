@@ -1,6 +1,17 @@
 import { Ban, CircleCheck, TriangleAlert } from "lucide-react";
 import { useState } from "react";
-import { closeApp, configUIApp, EKeyInfor, FlutterMessageResponse, getInfo, IViewUiConfig, openPickerImage, vibrate } from "x-app-sdk";
+import {
+    closeApp,
+    configUIApp,
+    EKeyInfor,
+    EPremissionsType,
+    FlutterMessageResponse,
+    getInfo,
+    IViewUiConfig,
+    openPickerImage,
+    premissionsRequest,
+    vibrate
+} from "../../../x-app-sdk";
 import { XButton } from "x-app-ui";
 
 function SDKPage() {
@@ -35,6 +46,11 @@ function SDKPage() {
         setData(res as FlutterMessageResponse)
     }
 
+    const requestPermisstion = async () => {
+        const res = await premissionsRequest(EPremissionsType.LOCATION)
+        setData(res as FlutterMessageResponse)
+    }
+
     return (
         <div className="xa:p-4">
             <h1 className='xa:text-2xl xa:font-bold'>SDK Mini App V1</h1>
@@ -51,9 +67,16 @@ function SDKPage() {
                 <p>Quyền từng sự kiện <br />- Fake gọi api</p>
             </div>
             <div className="xa:flex">
-                <Ban size={18} color="red" />
+                <TriangleAlert size={18} color="orange" />
                 <p>Quyền từng nhóm quyền</p>
             </div>
+            <XButton
+                onClick={requestPermisstion}
+            >
+                Xin quyền
+            </XButton>
+
+            <br />
             <br />
 
 
