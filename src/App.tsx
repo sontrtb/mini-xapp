@@ -14,53 +14,60 @@ import DatePickerDemo from './pages/DatePickerDemo';
 import BottomTabDemo from './pages/BottomTabDemo';
 import SwitchDemo from './pages/SwitchDemo';
 import SliderDemo from './pages/SliderDemo';
+import TabBarDemo from './pages/TabBarDemo';
+import { XLoadingProvider } from 'x-app-ui';
+import LoadingDemo from './pages/LoadingDemo';
 
 function App() {
   return (
-    <Router>
-      <div>
-        <header className="header">
-          <div className="container header-container">
-            <div className="logo">
-              <Link to="/">
-                <h1>XAppUI</h1>
-              </Link>
+    <XLoadingProvider>
+      <Router basename={import.meta.env.VITE_PRE_PATH}>
+        <div>
+          <header className="header">
+            <div className="container header-container">
+              <div className="logo">
+                <Link to="/">
+                  <h1>XAppUI</h1>
+                </Link>
+              </div>
+              <nav className="main-nav">
+                <ul>
+                  <li><Link to="/">Trang chủ</Link></li>
+                  <li><Link to="/buttons">Buttons</Link></li>
+                  <li><Link to="/inputs">Inputs</Link></li>
+                </ul>
+              </nav>
             </div>
-            <nav className="main-nav">
-              <ul>
-                <li><Link to="/">Trang chủ</Link></li>
-                <li><Link to="/buttons">Buttons</Link></li>
-                <li><Link to="/inputs">Inputs</Link></li>
-              </ul>
-            </nav>
-          </div>
-        </header>
+          </header>
 
-        <main className="main-content">
-          <div className="container">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/buttons" element={<ButtonDemo />} />
-              <Route path="/inputs" element={<XInputDemo />} />
-              <Route path="/bottom-sheet" element={<BottomSheetDemo />} />
-              <Route path="/modal" element={<ModalDemo />} />
-              <Route path="/check-box" element={<XCheckBoxDemo />} />
-              <Route path="/radio" element={<XRadioDemo />} />
-              <Route path="/date-picker" element={<DatePickerDemo />} />
-              <Route path="/bottom-tab" element={<BottomTabDemo />} />
-              <Route path="/switch" element={<SwitchDemo />} />
-              <Route path="/slider" element={<SliderDemo />} />
-            </Routes>
-          </div>
-        </main>
+          <main className="main-content">
+            <div className="container">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/buttons" element={<ButtonDemo />} />
+                <Route path="/inputs" element={<XInputDemo />} />
+                <Route path="/bottom-sheet" element={<BottomSheetDemo />} />
+                <Route path="/modal" element={<ModalDemo />} />
+                <Route path="/check-box" element={<XCheckBoxDemo />} />
+                <Route path="/radio" element={<XRadioDemo />} />
+                <Route path="/date-picker" element={<DatePickerDemo />} />
+                <Route path="/bottom-tab" element={<BottomTabDemo />} />
+                <Route path="/switch" element={<SwitchDemo />} />
+                <Route path="/slider" element={<SliderDemo />} />
+                <Route path="/tab-bar" element={<TabBarDemo />} />
+                <Route path="/loading" element={<LoadingDemo />} />
+              </Routes>
+            </div>
+          </main>
 
-        <footer className="footer">
-          <div className="container">
-            <p>&copy; 2025 XAppUI</p>
-          </div>
-        </footer>
-      </div>
-    </Router>
+          <footer className="footer">
+            <div className="container">
+              <p>&copy; 2025 XAppUI</p>
+            </div>
+          </footer>
+        </div>
+      </Router>
+    </XLoadingProvider>
   );
 }
 

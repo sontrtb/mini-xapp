@@ -1,8 +1,8 @@
 :root {
-    --primary-color: #4f46e5;
+    --primary-color: #1060c5;
     --primary-hover: #4338ca;
-    --text-color: #1f2937;
-    --text-secondary: #6b7280;
+    --text-color: #212121;
+    --text-secondary: 828282;
     --bg-color: #ffffff;
     --bg-secondary: #f9fafb;
     --border-color: #e5e7eb;
@@ -29,16 +29,7 @@
     box-sizing: border-box;
   }
   
-  body {
-    color: var(--text-color);
-    background-color: var(--bg-color);
-  }
 
-  h3 {
-    font-weight: 700;
-    margin-top: 30px;
-  }
-  
   .container {
     width: 100%;
     max-width: 1200px;
@@ -47,7 +38,7 @@
   }
   
   .header {
-    background-color: var(--bg-color);
+    background-color: var(--primary-color);
     border-bottom: 1px solid var(--border-color);
     position: sticky;
     top: 0;
@@ -65,10 +56,11 @@
   .logo h1 {
     font-size: 1.25rem;
     font-weight: 600;
+    color: #fff;
   }
   
   .logo a {
-    color: var(--text-color);
+    color: #fff;
     text-decoration: none;
   }
   
@@ -79,7 +71,7 @@
   }
   
   .main-nav a {
-    color: var(--text-secondary);
+    color: #fff;
     text-decoration: none;
     font-size: 0.875rem;
     font-weight: 500;
@@ -113,10 +105,6 @@
     font-size: 1.5rem;
     margin-bottom: 1rem;
     font-weight: 600;
-  }
-  
-  .demo-section p {
-
   }
   
   .demo-container {
@@ -174,7 +162,7 @@
   .hero {
     text-align: center;
     padding: 4rem 0;
-    background-color: var(--bg-secondary);
+    background-color: #d7e7fc;
     border-radius: var(--radius);
     margin-bottom: 3rem;
   }

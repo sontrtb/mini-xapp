@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { XDatePicker, XButton, XFormDatePicker } from 'x-app-ui';
+import { useLoading, XButton } from 'x-app-ui';
 
-export default function DatePickerDemoDemo() {
+export default function LoadingDemo() {
     const [activeTab, setActiveTab] = useState('preview');
-    
+
+    const {showLoading, hidenLoading} = useLoading()
+
     return (
         <div className="demo-section">
-            <h2>XDatePicker Demo</h2>
-            <p>Các input tương tác với nhiều kiểu và trạng thái khác nhau</p>
+            <h2>LoadingDemo</h2>
+            <p>Các nút tương tác với nhiều kiểu và trạng thái khác nhau</p>
 
             <div className="tabs">
                 <div
@@ -26,28 +28,12 @@ export default function DatePickerDemoDemo() {
 
             <div className={`tab-content ${activeTab === 'preview' ? 'active' : ''}`}>
                 <div className="demo-container">
-                    <h3 className='xa:font-bold'>DatePicker chọn ngày</h3>
-                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '30px', marginTop: '0.5rem' }}>
-                        <XDatePicker>
-                            <XButton>Date Picker date</XButton>
-                        </XDatePicker>
-                    </div>
-
-                    <h3 className='xa:font-bold'>DatePicker chọn tháng</h3>
-                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '30px', marginTop: '0.5rem' }}>
-                        <XDatePicker type="month">
-                            <XButton>Date Picker month</XButton>
-                        </XDatePicker>
-                    </div>
-
-                    <h3 className='xa:font-bold'>Form DatePicker chọn ngày</h3>
-                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '30px', marginTop: '0.5rem' }}>
-                       <XFormDatePicker type="day" />
-                    </div>
-
-                    <h3 className='xa:font-bold'>Form DatePicker chọn tháng</h3>
-                    <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', marginBottom: '30px', marginTop: '0.5rem' }}>
-                    <XFormDatePicker type="month" />
+                    <h3 className='xa:font-bold'>Nhấn nút để bật loading</h3>
+                    <div>
+                        <XButton onClick={() => {
+                            showLoading();
+                            setTimeout(hidenLoading, 3000)
+                        }}>Show loading</XButton>
                     </div>
                 </div>
             </div>

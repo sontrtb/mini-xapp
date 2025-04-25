@@ -5,55 +5,66 @@ import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '../compone
 const components = [
   {
     name: 'Buttons',
-    description: 'Các nút tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Các nút bấm với nhiều kiểu dáng và trạng thái khác nhau',
     path: '/buttons',
   },
   {
     name: 'Input',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Trường nhập liệu văn bản với nhiều biến thể và trạng thái',
     path: '/inputs',
   },
   {
     name: 'Bottom Sheet',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Bảng điều khiển trượt lên từ dưới màn hình, thường dùng để hiển thị tuỳ chọn hoặc nội dung phụ',
     path: '/bottom-sheet',
   },
   {
     name: 'Modal',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Cửa sổ bật lên hiển thị nội dung hoặc yêu cầu người dùng tương tác',
     path: '/modal',
   },
   {
     name: 'CheckBox',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Ô vuông cho phép người dùng chọn một hoặc nhiều tuỳ chọn',
     path: '/check-box',
   },
   {
     name: 'Radio',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Nút tròn cho phép người dùng chọn một trong nhiều tuỳ chọn',
     path: '/radio',
   },
   {
     name: 'Date Picker',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Bộ chọn ngày cho phép người dùng chọn ngày trong lịch',
     path: '/date-picker',
   },
   {
     name: 'Bottom Tab',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Thanh điều hướng nằm ở dưới cùng của ứng dụng',
     path: '/bottom-tab',
   },
   {
     name: 'Switch',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Nút gạt chuyển đổi trạng thái giữa bật và tắt',
     path: '/switch',
   },
   {
     name: 'Slider',
-    description: 'Các input tương tác với nhiều kiểu và trạng thái khác nhau',
+    description: 'Thanh trượt cho phép người dùng chọn giá trị trong một khoảng',
     path: '/slider',
+  },
+  {
+    name: 'TabBar',
+    description: 'Thanh điều hướng dạng tab để chuyển đổi giữa các trang',
+    path: '/tab-bar',
+  },
+  {
+    name: 'Loading',
+    description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
+    path: '/loading',
   }
 ];
+
 
 export default function Home() {
   return (
