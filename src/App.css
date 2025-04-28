@@ -78,10 +78,6 @@
     transition: color 0.2s;
   }
   
-  .main-nav a:hover {
-    color: var(--primary-color);
-  }
-  
   .main-content {
     padding: 2rem 0;
     min-height: calc(100vh - 8rem);
