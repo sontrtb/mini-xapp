@@ -63,6 +63,7 @@ function App() {
           <footer className="footer">
             <div className="container">
               <p>&copy; 2025 XAppUI</p>
+              <a href='https://www.google.com/'>Link</a>
             </div>
           </footer>
         </div>
