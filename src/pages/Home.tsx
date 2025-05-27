@@ -62,6 +62,11 @@ const components = [
     name: 'Loading',
     description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
     path: '/loading',
+  },
+  {
+    name: 'SDK',
+    description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
+    path: '/sdk-page',
   }
 ];
 

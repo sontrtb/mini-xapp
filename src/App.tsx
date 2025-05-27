@@ -17,6 +17,7 @@ import SliderDemo from './pages/SliderDemo';
 import TabBarDemo from './pages/TabBarDemo';
 import { XLoadingProvider } from 'x-app-ui';
 import LoadingDemo from './pages/LoadingDemo';
+import SDKPage from './pages/SDKPage';
 
 function App() {
   return (
@@ -56,6 +57,9 @@ function App() {
                 <Route path="/slider" element={<SliderDemo />} />
                 <Route path="/tab-bar" element={<TabBarDemo />} />
                 <Route path="/loading" element={<LoadingDemo />} />
+                
+                <Route path="/sdk-page" element={<SDKPage />} />
+                
               </Routes>
             </div>
           </main>

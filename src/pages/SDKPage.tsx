@@ -10,8 +10,10 @@ import {
     IViewUiConfig,
     openPickerImage,
     // premissionsRequest,
-    vibrate
-} from "x-app-sdk";
+    vibrate,
+    paymentRequest,
+    ETypePayment
+} from "../../../sdk";
 import { XButton } from "x-app-ui";
 
 function SDKPage() {
@@ -44,6 +46,11 @@ function SDKPage() {
     const onVibrate = async () => {
         const res = await vibrate()
         setData(res as FlutterMessageResponse)
+    }
+
+    const onPaymentRequest = async () => {
+        const res = await paymentRequest({type: ETypePayment.ONE_PAY})
+         setData(res as FlutterMessageResponse)
     }
 
     const requestPermisstion = async () => {
@@ -223,11 +230,18 @@ function SDKPage() {
             <br />
             <br />
             <br />
-            <a href="https://www.youtube.com/">Link Test</a>
-            <br />
-            <br />
+
+            <h2 className='xa:text-xl xa:font-bold'>Thanh toán</h2>
+            <XButton
+                onClick={onPaymentRequest}
+            >
+                OnePay
+            </XButton>
             <br />
 
+            <br />
+            <br />
+            <br />
         </div >
     )
 }
