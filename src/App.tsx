@@ -44,6 +44,8 @@ function App() {
           <main className="main-content">
             <div className="container">
               <Routes>
+                <Route path="/sdk-page" element={<SDKPage />} />
+                
                 <Route path="/" element={<Home />} />
                 <Route path="/buttons" element={<ButtonDemo />} />
                 <Route path="/inputs" element={<XInputDemo />} />
@@ -57,9 +59,6 @@ function App() {
                 <Route path="/slider" element={<SliderDemo />} />
                 <Route path="/tab-bar" element={<TabBarDemo />} />
                 <Route path="/loading" element={<LoadingDemo />} />
-                
-                <Route path="/sdk-page" element={<SDKPage />} />
-                
               </Routes>
             </div>
           </main>

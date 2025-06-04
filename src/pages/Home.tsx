@@ -3,6 +3,12 @@ import { XButton } from 'x-app-ui';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '../components/Card';
 
 const components = [
+   {
+    name: 'SDK',
+    description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
+    path: '/sdk-page',
+  },
+  
   {
     name: 'Buttons',
     description: 'Các nút bấm với nhiều kiểu dáng và trạng thái khác nhau',
@@ -63,11 +69,6 @@ const components = [
     description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
     path: '/loading',
   },
-  {
-    name: 'SDK',
-    description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
-    path: '/sdk-page',
-  }
 ];
 
 
