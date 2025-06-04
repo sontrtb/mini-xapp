@@ -17,6 +17,7 @@ import SliderDemo from './pages/SliderDemo';
 import TabBarDemo from './pages/TabBarDemo';
 import { XLoadingProvider } from 'x-app-ui';
 import LoadingDemo from './pages/LoadingDemo';
+import SDKPage from './pages/SDKPage';
 
 function App() {
   return (
@@ -43,6 +44,8 @@ function App() {
           <main className="main-content">
             <div className="container">
               <Routes>
+                <Route path="/sdk-page" element={<SDKPage />} />
+                
                 <Route path="/" element={<Home />} />
                 <Route path="/buttons" element={<ButtonDemo />} />
                 <Route path="/inputs" element={<XInputDemo />} />

@@ -10,8 +10,15 @@ import {
     IViewUiConfig,
     openPickerImage,
     // premissionsRequest,
-    vibrate
-} from "x-app-sdk";
+    vibrate,
+    paymentRequest,
+    ETypePayment,
+    EMediaType,
+    openPickerFile,
+    call,
+    sms,
+    currentLocation
+} from "../../../sdk";
 import { XButton } from "x-app-ui";
 
 function SDKPage() {
@@ -22,8 +29,13 @@ function SDKPage() {
         setData(res)
     }
 
-    const onPickerImage = async () => {
-        const res = await openPickerImage()
+    const onPickerImage = async (type: EMediaType) => {
+        const res = await openPickerImage(type)
+        setData(res)
+    }
+
+    const onPickerFile = async () => {
+        const res = await openPickerFile()
         setData(res)
     }
 
@@ -43,6 +55,24 @@ function SDKPage() {
 
     const onVibrate = async () => {
         const res = await vibrate()
+        setData(res as FlutterMessageResponse)
+    }
+    const onCall = async () => {
+        const res = await call("0355677825");
+        setData(res as FlutterMessageResponse)
+    }
+    const onSms = async () => {
+        const res = await sms("0355677825");
+        setData(res as FlutterMessageResponse)
+    }
+
+    const onPaymentRequest = async () => {
+        const res = await paymentRequest({ type: ETypePayment.ONE_PAY })
+        setData(res as FlutterMessageResponse)
+    }
+
+    const onGetLocation = async () => {
+        const res = await currentLocation()
         setData(res as FlutterMessageResponse)
     }
 
@@ -102,16 +132,26 @@ function SDKPage() {
                 <p>Lấy hình ảnh (từ file hoặc camera)</p>
             </div>
             <XButton
-                onClick={onPickerImage}
+                onClick={() => onPickerImage(EMediaType.gallery)}
             >
-                Lấy hình ảnh
+                Lấy hình ảnh từ thư viện
+            </XButton>
+            <XButton
+                onClick={() => onPickerImage(EMediaType.camera)}
+            >
+                Lấy hình ảnh từ máy ảnh
             </XButton>
             <br />
             <br />
             <div className="xa:flex">
-                <Ban size={18} color="red" />
+                <CircleCheck size={18} color="green" />
                 <p>Chọn file từ thiết bị</p>
             </div>
+            <XButton
+                onClick={() => onPickerFile()}
+            >
+                Chọn file
+            </XButton>
 
             <br />
             <br />
@@ -166,19 +206,24 @@ function SDKPage() {
             <br />
             <br />
             <div className="xa:flex">
-                <Ban size={18} color="red" />
-                <p>Lấy thông tin Network</p>
-            </div>
-            <br />
-            <div className="xa:flex">
-                <Ban size={18} color="red" />
+                <CircleCheck size={18} color="green" />
                 <p>Mở ứng dụng gọi điện thoại của thiết bị</p>
             </div>
-            <br />
+             <XButton
+                onClick={onCall}
+            >
+                Gọi điện
+            </XButton>
+            <br /><br />
             <div className="xa:flex">
-                <Ban size={18} color="red" />
+                <CircleCheck size={18} color="green" />
                 <p>Mở ứng dụng tin nhắn của thiết bị</p>
             </div>
+             <XButton
+                onClick={onSms}
+            >
+                Nhắn tin
+            </XButton>
 
             <br />
             <br />
@@ -189,6 +234,11 @@ function SDKPage() {
                 <Ban size={18} color="red" />
                 <p>Lấy vị trí hiện tại của người dùng</p>
             </div>
+             <XButton
+                onClick={onGetLocation}
+            >
+                Lấy vị trí
+            </XButton>
 
             <br />
             <br />
@@ -223,11 +273,18 @@ function SDKPage() {
             <br />
             <br />
             <br />
-            <a href="https://www.youtube.com/">Link Test</a>
-            <br />
-            <br />
+
+            <h2 className='xa:text-xl xa:font-bold'>Thanh toán</h2>
+            <XButton
+                onClick={onPaymentRequest}
+            >
+                OnePay
+            </XButton>
             <br />
 
+            <br />
+            <br />
+            <br />
         </div >
     )
 }
