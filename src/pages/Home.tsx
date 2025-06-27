@@ -69,6 +69,11 @@ const components = [
     description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
     path: '/loading',
   },
+  {
+    name: 'Toast',
+    description: 'Hiển thị thông báo',
+    path: '/toast',
+  },
 ];
 
 

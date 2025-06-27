@@ -1,28 +1,28 @@
-import { Ban, CircleCheck, TriangleAlert } from "lucide-react";
+import { Ban, CircleCheck } from "lucide-react";
 import { useState } from "react";
 import {
     closeApp,
     configUIApp,
     EKeyInfor,
-    // EPremissionsType,
     FlutterMessageResponse,
     getInfo,
     IViewUiConfig,
     openPickerImage,
-    // premissionsRequest,
+    premissionsRequest,
     vibrate,
     paymentRequest,
-    ETypePayment,
     EMediaType,
     openPickerFile,
     call,
     sms,
-    currentLocation
-} from "../../../sdk";
+    currentLocation,
+    ETypeRequest,
+} from "x-app-sdk";
 import { XButton } from "x-app-ui";
 
 function SDKPage() {
     const [data, setData] = useState<FlutterMessageResponse>();
+    const [isLoading, setIsLoading] = useState(false)
 
     const getUserInfor = async () => {
         const res = await getInfo(EKeyInfor.USER);
@@ -40,7 +40,7 @@ function SDKPage() {
     }
 
     const onCloseApp = async () => {
-        closeApp({ data: "son fe" })
+        closeApp({ data: "son fe dev" })
     }
 
     const onConfigUIApp = async () => {
@@ -67,8 +67,10 @@ function SDKPage() {
     }
 
     const onPaymentRequest = async () => {
-        const res = await paymentRequest({ type: ETypePayment.ONE_PAY })
+        setIsLoading(true)
+        const res = await paymentRequest({ partnerOrderId: "testMiniApp", totalAmount: 100000 })
         setData(res as FlutterMessageResponse)
+        setIsLoading(false)
     }
 
     const onGetLocation = async () => {
@@ -77,8 +79,8 @@ function SDKPage() {
     }
 
     const requestPermisstion = async () => {
-        // const res = await premissionsRequest(EPremissionsType.LOCATION)
-        // setData(res as FlutterMessageResponse)
+        const res = await premissionsRequest(ETypeRequest.RequestPickerFile)
+        setData(res as FlutterMessageResponse)
     }
 
     return (
@@ -93,17 +95,13 @@ function SDKPage() {
             <br />
             <h2 className='xa:text-xl xa:font-bold'>Phân quyền</h2>
             <div className="xa:flex">
-                <TriangleAlert size={18} color="orange" />
-                <p>Quyền từng sự kiện <br />- Fake gọi api</p>
-            </div>
-            <div className="xa:flex">
-                <TriangleAlert size={18} color="orange" />
-                <p>Quyền từng nhóm quyền</p>
+                <CircleCheck size={18} color="green" />
+                <p>Quyền từng sự kiện</p>
             </div>
             <XButton
                 onClick={requestPermisstion}
             >
-                Xin quyền
+                Kiểm tra quyền
             </XButton>
 
             <br />
@@ -112,9 +110,8 @@ function SDKPage() {
 
             <h2 className='xa:text-xl xa:font-bold'>User</h2>
             <div className="xa:flex">
-                <TriangleAlert size={18} color="orange" />
-                <p>Lấy thông tin user<br />
-                    - Đã có cơ chế cache (Mới dựng cấu trúc, chưa lấy được dữ liệu thật)</p>
+                <CircleCheck size={18} color="green" />
+                <p>Lấy thông tin user - Đã có cơ chế cache</p>
             </div>
             <XButton
                 onClick={getUserInfor}
@@ -209,7 +206,7 @@ function SDKPage() {
                 <CircleCheck size={18} color="green" />
                 <p>Mở ứng dụng gọi điện thoại của thiết bị</p>
             </div>
-             <XButton
+            <XButton
                 onClick={onCall}
             >
                 Gọi điện
@@ -219,7 +216,7 @@ function SDKPage() {
                 <CircleCheck size={18} color="green" />
                 <p>Mở ứng dụng tin nhắn của thiết bị</p>
             </div>
-             <XButton
+            <XButton
                 onClick={onSms}
             >
                 Nhắn tin
@@ -231,10 +228,10 @@ function SDKPage() {
 
             <h2 className='xa:text-xl xa:font-bold'>Location</h2>
             <div className="xa:flex">
-                <Ban size={18} color="red" />
+                <CircleCheck size={18} color="green" />
                 <p>Lấy vị trí hiện tại của người dùng</p>
             </div>
-             <XButton
+            <XButton
                 onClick={onGetLocation}
             >
                 Lấy vị trí
@@ -244,7 +241,7 @@ function SDKPage() {
             <br />
             <br />
 
-            <h2 className='xa:text-xl xa:font-bold'>Storage</h2>
+            {/* <h2 className='xa:text-xl xa:font-bold'>Storage</h2>
             <div className="xa:flex">
                 <Ban size={18} color="red" />
                 <p>Lưu dữ liệu ở thiết bị của người dùng.</p>
@@ -272,13 +269,14 @@ function SDKPage() {
 
             <br />
             <br />
-            <br />
+            <br /> */}
 
             <h2 className='xa:text-xl xa:font-bold'>Thanh toán</h2>
             <XButton
+                state={isLoading ? "loading" : "default"}
                 onClick={onPaymentRequest}
             >
-                OnePay
+                Thanh Toán
             </XButton>
             <br />
 
