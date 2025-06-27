@@ -84,205 +84,118 @@ function SDKPage() {
     }
 
     return (
-        <div className="xa:p-4">
-            <h1 className='xa:text-2xl xa:font-bold'>SDK Mini App V1</h1>
-            <h2 className='xa:font-bold'>SDK Mini App V1</h2>
-            <br />
-            <div className="xa:border xa:p-2 xa:break-all xa:w-[calc(100vw - 100px)] xa:whitespace-pre-wrap">
-                {JSON.stringify(data, null, 2)}
+        <div className="xa:p-4 xa:bg-[#f7f9fa] min-h-screen">
+            <h1 className='xa:text-3xl xa:font-extrabold xa:mb-2 xa:text-primary'>SDK Mini App V1</h1>
+            <h2 className='xa:font-bold xa:text-base xa:text-gray-500 xa:mb-4'>Demo các tính năng của SDK</h2>
+
+            <div className="xa:border xa:rounded-lg xa:p-4 xa:bg-white xa:shadow-sm xa:mb-6 xa:break-all xa:w-full xa:whitespace-pre-wrap xa:text-xs xa:text-gray-700">
+                <span className="xa:font-semibold xa:text-gray-800">Kết quả:</span>
+                <pre className="xa:mt-1 xa:overflow-x-auto">{JSON.stringify(data, null, 2)}</pre>
             </div>
 
-            <br />
-            <h2 className='xa:text-xl xa:font-bold'>Phân quyền</h2>
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Quyền từng sự kiện</p>
-            </div>
-            <XButton
-                onClick={requestPermisstion}
-            >
-                Kiểm tra quyền
-            </XButton>
+            {/* Section: Phân quyền */}
+            <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:p-4 xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Phân quyền</h2>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Quyền từng sự kiện</p>
+                </div>
+                <XButton onClick={requestPermisstion} className="xa:w-full">Kiểm tra quyền</XButton>
+            </section>
 
-            <br />
-            <br />
+            {/* Section: User */}
+            <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:p-4 xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>User</h2>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Lấy thông tin user - Đã có cơ chế cache</p>
+                </div>
+                <XButton onClick={getUserInfor} className="xa:w-full">Thông tin user</XButton>
+            </section>
 
+            {/* Section: Media */}
+            <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:p-4 xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Media</h2>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Lấy hình ảnh (từ file hoặc camera)</p>
+                </div>
+                <div className="xa:flex xa:gap-2 xa:mb-2">
+                    <XButton onClick={() => onPickerImage(EMediaType.gallery)} className="xa:flex-1">Thư viện</XButton>
+                    <XButton onClick={() => onPickerImage(EMediaType.camera)} className="xa:flex-1">Máy ảnh</XButton>
+                </div>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Chọn file từ thiết bị</p>
+                </div>
+                <XButton onClick={onPickerFile} className="xa:w-full">Chọn file</XButton>
+            </section>
 
-            <h2 className='xa:text-xl xa:font-bold'>User</h2>
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Lấy thông tin user - Đã có cơ chế cache</p>
-            </div>
-            <XButton
-                onClick={getUserInfor}
-            >
-                Thông tin user
-            </XButton>
+            {/* Section: Routing */}
+            <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:p-4 xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Routing</h2>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Đóng Mini App <br /> <span className="xa:text-xs xa:text-gray-400">Có thể truyền data vào để xử lý khi đóng app</span></p>
+                </div>
+                <XButton onClick={onCloseApp} className="xa:w-full">Đóng App</XButton>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mt-2">
+                    <Ban size={18} color="red" />
+                    <p>Mở webview</p>
+                </div>
+            </section>
 
-            <br />
-            <br />
-            <br />
+            {/* Section: Config */}
+            <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:p-4 xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Config</h2>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Chỉnh sửa header mini app <br /> <span className="xa:text-xs xa:text-gray-400">Thay đổi màu nền header, màu chữ header, chữ trên header</span></p>
+                </div>
+                <XButton onClick={onConfigUIApp} className="xa:w-full">Config UI</XButton>
+            </section>
 
-            <h2 className='xa:text-xl xa:font-bold'>Media</h2>
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Lấy hình ảnh (từ file hoặc camera)</p>
-            </div>
-            <XButton
-                onClick={() => onPickerImage(EMediaType.gallery)}
-            >
-                Lấy hình ảnh từ thư viện
-            </XButton>
-            <XButton
-                onClick={() => onPickerImage(EMediaType.camera)}
-            >
-                Lấy hình ảnh từ máy ảnh
-            </XButton>
-            <br />
-            <br />
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Chọn file từ thiết bị</p>
-            </div>
-            <XButton
-                onClick={() => onPickerFile()}
-            >
-                Chọn file
-            </XButton>
+            {/* Section: Device */}
+            <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:p-4 xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Device</h2>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Rung</p>
+                </div>
+                <XButton onClick={onVibrate} className="xa:w-full">Rung</XButton>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mt-4 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Mở ứng dụng gọi điện thoại của thiết bị</p>
+                </div>
+                <XButton onClick={onCall} className="xa:w-full">Gọi điện</XButton>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mt-4 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Mở ứng dụng tin nhắn của thiết bị</p>
+                </div>
+                <XButton onClick={onSms} className="xa:w-full">Nhắn tin</XButton>
+            </section>
 
-            <br />
-            <br />
-            <br />
+            {/* Section: Location */}
+            <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:p-4 xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Location</h2>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Lấy vị trí hiện tại của người dùng</p>
+                </div>
+                <XButton onClick={onGetLocation} className="xa:w-full">Lấy vị trí</XButton>
+            </section>
 
-            <h2 className='xa:text-xl xa:font-bold'>Routing</h2>
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Đóng Mini App <br /> - Có thể truyền data vào để xử lý khi đóng app</p>
-            </div>
-            <XButton
-                onClick={onCloseApp}
-            >
-                Đóng App
-            </XButton>
-            <br />
-            <br />
-            <div className="xa:flex">
-                <Ban size={18} color="red" />
-                <p>Mở webview</p>
-            </div>
-
-            <br />
-            <br />
-            <br />
-
-            <h2 className='xa:text-xl xa:font-bold'>Config</h2>
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Chỉnh sửa header mini app <br /> - Thay đổi màu nền header, màu chữ header, chữ trên header</p>
-            </div>
-            <XButton
-                onClick={onConfigUIApp}
-            >
-                Config UI
-            </XButton>
-
-            <br />
-            <br />
-            <br />
-
-            <h2 className='xa:text-xl xa:font-bold'>Device</h2>
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Rung</p>
-            </div>
-            <XButton
-                onClick={onVibrate}
-            >
-                Rung
-            </XButton>
-            <br />
-            <br />
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Mở ứng dụng gọi điện thoại của thiết bị</p>
-            </div>
-            <XButton
-                onClick={onCall}
-            >
-                Gọi điện
-            </XButton>
-            <br /><br />
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Mở ứng dụng tin nhắn của thiết bị</p>
-            </div>
-            <XButton
-                onClick={onSms}
-            >
-                Nhắn tin
-            </XButton>
-
-            <br />
-            <br />
-            <br />
-
-            <h2 className='xa:text-xl xa:font-bold'>Location</h2>
-            <div className="xa:flex">
-                <CircleCheck size={18} color="green" />
-                <p>Lấy vị trí hiện tại của người dùng</p>
-            </div>
-            <XButton
-                onClick={onGetLocation}
-            >
-                Lấy vị trí
-            </XButton>
-
-            <br />
-            <br />
-            <br />
-
-            {/* <h2 className='xa:text-xl xa:font-bold'>Storage</h2>
-            <div className="xa:flex">
-                <Ban size={18} color="red" />
-                <p>Lưu dữ liệu ở thiết bị của người dùng.</p>
-            </div>
-            <br />
-            <div className="xa:flex">
-                <Ban size={18} color="red" />
-                <p>Lấy dữ liệu đã lưu </p>
-            </div>
-            <br />
-            <div className="xa:flex">
-                <Ban size={18} color="red" />
-                <p>Xóa dữ liệu đã lưu </p>
-            </div>
-            <br />
-            <div className="xa:flex">
-                <Ban size={18} color="red" />
-                <p>Xóa tất cả dữ liệu đã lưu</p>
-            </div>
-            <br />
-            <div className="xa:flex">
-                <Ban size={18} color="red" />
-                <p>Lấy thông tin bộ đệm</p>
-            </div>
-
-            <br />
-            <br />
-            <br /> */}
-
-            <h2 className='xa:text-xl xa:font-bold'>Thanh toán</h2>
-            <XButton
-                state={isLoading ? "loading" : "default"}
-                onClick={onPaymentRequest}
-            >
-                Thanh Toán
-            </XButton>
-            <br />
-
-            <br />
-            <br />
-            <br />
+            {/* Section: Thanh toán */}
+            <section className="xa:mb-10 xa:bg-white xa:rounded-lg xa:p-4 xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Thanh toán</h2>
+                <XButton
+                    state={isLoading ? "loading" : "default"}
+                    onClick={onPaymentRequest}
+                    className="xa:w-full"
+                >
+                    Thanh Toán
+                </XButton>
+            </section>
         </div >
     )
 }
