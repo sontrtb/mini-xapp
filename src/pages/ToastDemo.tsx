@@ -31,7 +31,7 @@ export default function ToastDemo() {
                     <h3 className='xa:font-bold'>Nhấn nút để bật loading</h3>
                     <div>
                         <XButton onClick={() => {
-                            showToast("Thông báo thành công!", { status: "success" });
+                            showToast("Thôngbáothànhcông!ThôngbáothànhThôngbáothànhThôngbáothànhThôngbáothành", { status: "success" });
                         }}>Thành công</XButton>
                         <br />
                         <br />

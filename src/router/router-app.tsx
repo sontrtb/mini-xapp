@@ -16,16 +16,21 @@ import SliderDemo from '../pages/SliderDemo';
 import TabBarDemo from '../pages/TabBarDemo';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useToast } from 'x-app-ui';
-import { useEffect } from 'react';
-import { fltSDK, listenPaymentEvent } from 'x-app-sdk';
+import { useEffect, useState } from 'react';
+import { fltSDK, FlutterMessageResponse, IPaymentResult, listenPaymentEvent } from 'x-app-sdk';
 
 function RouterApp() {
     const { showToast } = useToast()
+    const [data, setData] = useState<FlutterMessageResponse>();
 
     // Lắng nghe thanh toán
-    const handelEVventPayment = (event: unknown) => {
+    const handelEVventPayment = (event: FlutterMessageResponse<IPaymentResult>) => {
         console.log('Payment event received:', event);
-        showToast("Thông báo thành công!", { status: "success" });
+        setData(event)
+        showToast(
+            event.data?.status === "success" ? "Thanh toán thành công" : "Thanh toán thất bại",
+            { status: event.data?.status === "success" ? "success" : "error" }
+        );
     }
 
     useEffect(() => {
@@ -59,8 +64,15 @@ function RouterApp() {
                     </div>
                 </header>
 
+
+
                 <main className="main-content">
                     <div className="container">
+                        <div className="xa:border xa:rounded-lg  xa:p-4 xa:bg-white xa:shadow-sm xa:mb-6 xa:break-all xa:w-full xa:whitespace-pre-wrap xa:text-xs xa:text-gray-700">
+                            <span className="xa:font-semibold xa:text-gray-800">Kết quả:</span>
+                            <pre className="xa:mt-1 xa:overflow-x-auto">{JSON.stringify(data, null, 2)}</pre>
+                        </div>
+
                         <Routes>
                             <Route path="/sdk-page" element={<SDKPage />} />
 
