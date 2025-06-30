@@ -76,7 +76,13 @@ function SDKPage() {
 
     const onPaymentRequest = async () => {
         setIsLoading(true)
-        const res = await paymentRequest({ partnerOrderId, totalAmount: parseInt(totalAmount) })
+        const res = await paymentRequest({
+            partnerOrderId,
+            totalAmount: parseInt(totalAmount),
+            extra: `{
+                "type": "test"
+            }`
+        })
         setData(res as FlutterMessageResponse)
         setIsLoading(false)
     }
@@ -146,9 +152,9 @@ function SDKPage() {
                     <CircleCheck size={18} color="green" />
                     <p>Đóng Mini App <br /> <span className="xa:text-xs xa:text-gray-400">Có thể truyền data vào để xử lý khi đóng app</span></p>
                 </div>
-                <XInput 
-                    label="Dữ liệu khi đóng app" 
-                    value={closeAppData} 
+                <XInput
+                    label="Dữ liệu khi đóng app"
+                    value={closeAppData}
                     onChange={(e) => setCloseAppData(e.target.value)}
                     placeholder="Nhập dữ liệu"
                     className="xa:mb-2"
@@ -167,23 +173,23 @@ function SDKPage() {
                     <CircleCheck size={18} color="green" />
                     <p>Chỉnh sửa header mini app <br /> <span className="xa:text-xs xa:text-gray-400">Thay đổi màu nền header, màu chữ header, chữ trên header</span></p>
                 </div>
-                <XInput 
-                    label="Màu nền header" 
-                    value={headerColor} 
+                <XInput
+                    label="Màu nền header"
+                    value={headerColor}
                     onChange={(e) => setHeaderColor(e.target.value)}
                     placeholder="#000000"
                     className="xa:mb-2"
                 />
-                <XInput 
-                    label="Tiêu đề header" 
-                    value={headerTitle} 
+                <XInput
+                    label="Tiêu đề header"
+                    value={headerTitle}
                     onChange={(e) => setHeaderTitle(e.target.value)}
                     placeholder="Nhập tiêu đề"
                     className="xa:mb-2"
                 />
-                <XInput 
-                    label="Màu chữ header" 
-                    value={headerTextColor} 
+                <XInput
+                    label="Màu chữ header"
+                    value={headerTextColor}
                     onChange={(e) => setHeaderTextColor(e.target.value)}
                     placeholder="#ffffff"
                     className="xa:mb-2"
@@ -203,9 +209,9 @@ function SDKPage() {
                     <CircleCheck size={18} color="green" />
                     <p>Mở ứng dụng gọi điện thoại của thiết bị</p>
                 </div>
-                <XInput 
-                    label="Số điện thoại" 
-                    value={phoneNumber} 
+                <XInput
+                    label="Số điện thoại"
+                    value={phoneNumber}
                     onChange={(e) => setPhoneNumber(e.target.value)}
                     placeholder="Nhập số điện thoại"
                     className="xa:mb-2"
@@ -215,9 +221,9 @@ function SDKPage() {
                     <CircleCheck size={18} color="green" />
                     <p>Mở ứng dụng tin nhắn của thiết bị</p>
                 </div>
-                <XInput 
-                    label="Số điện thoại" 
-                    value={smsPhoneNumber} 
+                <XInput
+                    label="Số điện thoại"
+                    value={smsPhoneNumber}
                     onChange={(e) => setSmsPhoneNumber(e.target.value)}
                     placeholder="Nhập số điện thoại"
                     className="xa:mb-2"
@@ -238,16 +244,16 @@ function SDKPage() {
             {/* Section: Thanh toán */}
             <section className="xa:mb-10 xa:bg-white xa:rounded-lg xa:shadow-sm">
                 <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Thanh toán</h2>
-                <XInput 
-                    label="Partner Order ID" 
-                    value={partnerOrderId} 
+                <XInput
+                    label="Partner Order ID"
+                    value={partnerOrderId}
                     onChange={(e) => setPartnerOrderId(e.target.value)}
                     placeholder="Nhập Partner Order ID"
                     className="xa:mb-2"
                 />
-                <XInput 
-                    label="Số tiền" 
-                    value={totalAmount} 
+                <XInput
+                    label="Số tiền"
+                    value={totalAmount}
                     onChange={(e) => setTotalAmount(e.target.value)}
                     placeholder="Nhập số tiền"
                     type="number"
