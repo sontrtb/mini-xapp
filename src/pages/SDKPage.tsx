@@ -79,9 +79,9 @@ function SDKPage() {
         const res = await paymentRequest({
             partnerOrderId,
             totalAmount: parseInt(totalAmount),
-            extra: `{
-                "type": "test"
-            }`
+            // extra: `{
+            //     "type": "test"
+            // }`
         })
         setData(res as FlutterMessageResponse)
         setIsLoading(false)
