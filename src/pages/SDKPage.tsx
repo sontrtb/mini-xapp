@@ -79,7 +79,7 @@ function SDKPage() {
         const res = await paymentRequest({
             partnerOrderId,
             totalAmount: parseInt(totalAmount),
-            extra: "Hello 123 123"
+            // extra: "Hello 123 123"
         })
         setData(res as FlutterMessageResponse)
         setIsLoading(false)
