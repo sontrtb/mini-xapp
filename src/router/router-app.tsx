@@ -28,8 +28,8 @@ function RouterApp() {
         console.log('Payment event received:', event);
         setData(event)
         showToast(
-            event.data?.status === "success" ? "Thanh toán thành công" : "Thanh toán thất bại",
-            { status: event.data?.status === "success" ? "success" : "error" }
+            event.data?.status ? "Thanh toán thành công" : "Thanh toán thất bại",
+            { status: event.data?.status ? "success" : "error" }
         );
     }
 
