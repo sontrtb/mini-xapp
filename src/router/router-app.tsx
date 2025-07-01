@@ -17,7 +17,7 @@ import TabBarDemo from '../pages/TabBarDemo';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useToast } from 'x-app-ui';
 import { useEffect, useState } from 'react';
-import { fltSDK, FlutterMessageResponse, IPaymentResult, listenPaymentEvent } from 'x-app-sdk';
+import { fltSDK, FlutterMessageResponse, IPaymentResult, listenNotifiactionEvent, listenPaymentEvent } from 'x-app-sdk';
 
 function RouterApp() {
     const { showToast } = useToast()
@@ -25,7 +25,6 @@ function RouterApp() {
 
     // Lắng nghe thanh toán
     const handelEVventPayment = (event: FlutterMessageResponse<IPaymentResult>) => {
-        console.log('Payment event received:', event);
         setData(event)
         showToast(
             event.data?.status ? "Thanh toán thành công" : "Thanh toán thất bại",
@@ -33,14 +32,27 @@ function RouterApp() {
         );
     }
 
+    const handelNoti = (event: FlutterMessageResponse) => {
+        setData(event)
+        showToast(
+            "Có thông báo mới"
+        );
+    }
+
     useEffect(() => {
-        console.log('Lắng nghe thanh toán');
-        const unsubscribe = listenPaymentEvent((data) => {
+        // Lắng nghe thanh toán
+        const unsubscribePayment = listenPaymentEvent((data) => {
             handelEVventPayment(data)
         }, fltSDK);
 
+        // Lắng nghe thhông báo
+        const unsubscribeNoti = listenNotifiactionEvent((data) => {
+            handelNoti(data)
+        }, fltSDK);
+
         return () => {
-            unsubscribe();
+            unsubscribePayment();
+            unsubscribeNoti();
         };
     }, [showToast]);
 
