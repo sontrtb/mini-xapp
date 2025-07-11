@@ -17,6 +17,8 @@ import {
     sms,
     currentLocation,
     ETypeRequest,
+    EStatus,
+    ETypeResponse,
 } from "x-app-sdk";
 import { XButton, XInput } from "x-app-ui";
 
@@ -93,6 +95,27 @@ function SDKPage() {
     const requestPermisstion = async () => {
         const res = await premissionsRequest(ETypeRequest.RequestPickerFile)
         setData(res as FlutterMessageResponse)
+    }
+
+    const callApi = async () => {
+        setIsLoading(true)
+        try {
+            const response = await fetch('https://api-xsmb-today.onrender.com/api/v1')
+            const result = await response.json()
+            setData({
+                status: EStatus.SUCCESS,
+                type: ETypeResponse.ResponseCall,
+                data: result,
+            })
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        } catch (error) {
+            setData({
+                status: EStatus.ERROR,
+                type: ETypeResponse.ResponseCall,
+            })
+        } finally {
+            setIsLoading(false)
+        }
     }
 
     return (
@@ -240,7 +263,7 @@ function SDKPage() {
             </section>
 
             {/* Section: Thanh toán */}
-            <section className="xa:mb-10 xa:bg-white xa:rounded-lg xa:shadow-sm">
+            <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:shadow-sm">
                 <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>Thanh toán</h2>
                 <XInput
                     label="Partner Order ID"
@@ -263,6 +286,22 @@ function SDKPage() {
                     className="xa:w-full"
                 >
                     Thanh Toán
+                </XButton>
+            </section>
+
+            {/* Section: API Call */}
+            <section className="xa:mb-10 xa:bg-white xa:rounded-lg xa:shadow-sm">
+                <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>API Call</h2>
+                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                    <CircleCheck size={18} color="green" />
+                    <p>Gọi API lấy dữ liệu từ server</p>
+                </div>
+                <XButton
+                    state={isLoading ? "loading" : "default"}
+                    onClick={callApi}
+                    className="xa:w-full"
+                >
+                    Gọi API
                 </XButton>
             </section>
         </div >
