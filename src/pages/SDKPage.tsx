@@ -12,7 +12,7 @@ import {
     vibrate,
     paymentRequest,
     EMediaType,
-    openPickerFile,
+    // openPickerFile,ß
     call,
     sms,
     currentLocation,
@@ -44,10 +44,10 @@ function SDKPage() {
         setData(res)
     }
 
-    const onPickerFile = async () => {
-        const res = await openPickerFile()
-        setData(res)
-    }
+    // const onPickerFile = async () => {
+    //     const res = await openPickerFile()
+    //     setData(res)
+    // }
 
     const onCloseApp = async () => {
         closeApp({ data: closeAppData })
@@ -159,11 +159,11 @@ function SDKPage() {
                     <XButton onClick={() => onPickerImage(EMediaType.gallery)} className="xa:flex-1">Thư viện</XButton>
                     <XButton onClick={() => onPickerImage(EMediaType.camera)} className="xa:flex-1">Máy ảnh</XButton>
                 </div>
-                <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                {/* <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
                     <CircleCheck size={18} color="green" />
                     <p>Chọn file từ thiết bị</p>
                 </div>
-                <XButton onClick={onPickerFile} className="xa:w-full">Chọn file</XButton>
+                <XButton onClick={onPickerFile} className="xa:w-full">Chọn file</XButton> */}
             </section>
 
             {/* Section: Routing */}
