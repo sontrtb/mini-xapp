@@ -50,27 +50,29 @@ export default function BottomTabDemo() {
 
             <div className={`tab-content ${activeTab === 'code' ? 'active' : ''}`}>
                 <div className="code-block">
-                    <code>{`import { XButton } from '../components/XButton';
+                    <pre><code>{`import { Bell, CircleUser, House } from 'lucide-react';
+import { XBottomTab } from 'x-app-ui';
 
-// Các biến thể
-<XButton variant="primary">Primary</XButton>
-<XButton variant="secondary">Secondary</XButton>
-<XButton variant="danger">Danger</XButton>
-<XButton variant="outline">Outline</XButton>
-<XButton variant="ghost">Ghost</XButton>
+const bottomTabs = [
+  {
+    component: <div>Trang chủ</div>,
+    title: "Trang chủ",
+    icon: (color: string) => <House color={color} />
+  },
+  {
+    component: <p>Thông báo</p>,
+    title: "Thông báo",
+    icon: (color: string) => <Bell color={color} />,
+    numberNotifications: 5
+  },
+  {
+    component: <p>Tài khoản</p>,
+    title: "Tài khoản",
+    icon: (color: string) => <CircleUser color={color} />
+  }
+];
 
-// Các kích thước
-<XButton variant="primary" size="small">Small</XButton>
-<XButton variant="primary" size="medium">Medium</XButton>
-<XButton variant="primary" size="large">Large</XButton>
-
-// Trạng thái
-<XButton variant="primary">Bình thường</XButton>
-<XButton variant="primary" disabled>Vô hiệu hóa</XButton>
-<XButton variant="primary">
-  <span style={{ marginRight: '0.5rem' }}>↻</span>
-  Đang tải
-</XButton>`}</code>
+<XBottomTab tabs={bottomTabs} />`}</code></pre>
                 </div>
             </div>
         </div>

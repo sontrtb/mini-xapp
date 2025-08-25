@@ -54,27 +54,23 @@ export default function DatePickerDemoDemo() {
 
             <div className={`tab-content ${activeTab === 'code' ? 'active' : ''}`}>
                 <div className="code-block">
-                    <code>{`import { XButton } from '../components/XButton';
+                    <pre><code>{`import { XDatePicker, XButton, XFormDatePicker } from 'x-app-ui';
 
-// Các biến thể
-<XButton variant="primary">Primary</XButton>
-<XButton variant="secondary">Secondary</XButton>
-<XButton variant="danger">Danger</XButton>
-<XButton variant="outline">Outline</XButton>
-<XButton variant="ghost">Ghost</XButton>
+// DatePicker chọn ngày
+<XDatePicker>
+  <XButton>Date Picker date</XButton>
+</XDatePicker>
 
-// Các kích thước
-<XButton variant="primary" size="small">Small</XButton>
-<XButton variant="primary" size="medium">Medium</XButton>
-<XButton variant="primary" size="large">Large</XButton>
+// DatePicker chọn tháng
+<XDatePicker type="month">
+  <XButton>Date Picker month</XButton>
+</XDatePicker>
 
-// Trạng thái
-<XButton variant="primary">Bình thường</XButton>
-<XButton variant="primary" disabled>Vô hiệu hóa</XButton>
-<XButton variant="primary">
-  <span style={{ marginRight: '0.5rem' }}>↻</span>
-  Đang tải
-</XButton>`}</code>
+// Form DatePicker chọn ngày
+<XFormDatePicker type="day" />
+
+// Form DatePicker chọn tháng
+<XFormDatePicker type="month" />`}</code></pre>
                 </div>
             </div>
         </div>

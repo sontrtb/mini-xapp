@@ -52,27 +52,22 @@ export default function XInputDemo() {
 
             <div className={`tab-content ${activeTab === 'code' ? 'active' : ''}`}>
                 <div className="code-block">
-                    <code>{`import { XButton } from '../components/XButton';
+                    <pre><code>{`import { XInput, XTextarea } from 'x-app-ui';
 
-// Các biến thể
-<XButton variant="primary">Primary</XButton>
-<XButton variant="secondary">Secondary</XButton>
-<XButton variant="danger">Danger</XButton>
-<XButton variant="outline">Outline</XButton>
-<XButton variant="ghost">Ghost</XButton>
+// Loại
+<XInput label="Bình thường" placeholder="Placeholder" helperText="Helper Text" />
+<XInput label="Mật khẩu" placeholder="Placeholder" helperText="Helper Text" type="password" />
+<XTextarea label="Textarea" placeholder="Placeholder" helperText="Helper Text" />
 
-// Các kích thước
-<XButton variant="primary" size="small">Small</XButton>
-<XButton variant="primary" size="medium">Medium</XButton>
-<XButton variant="primary" size="large">Large</XButton>
+// Trạng thái validation
+<XInput label="Label" placeholder="Placeholder" helperText="Helper Text" />
+<XInput label="Error" placeholder="Placeholder" helperText="Helper Text" status="error" />
+<XInput label="Warning" placeholder="Placeholder" helperText="Helper Text Warning" status="warning" />
+<XInput label="Success" placeholder="Placeholder" helperText="Helper Text Success" status="success" />
 
 // Trạng thái
-<XButton variant="primary">Bình thường</XButton>
-<XButton variant="primary" disabled>Vô hiệu hóa</XButton>
-<XButton variant="primary">
-  <span style={{ marginRight: '0.5rem' }}>↻</span>
-  Đang tải
-</XButton>`}</code>
+<XInput label="Label" placeholder="Placeholder" helperText="Helper Text" />
+<XInput disabled label="Disable" placeholder="Placeholder" helperText="Helper Text" />`}</code></pre>
                 </div>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import LoadingDemo from '../pages/LoadingDemo';
 import SDKPage from '../pages/SDKPage';
 import ToastDemo from '../pages/ToastDemo';
+import Start from '../pages/Start';
 // Pages
 import Home from '../pages/Home';
 import ButtonDemo from '../pages/ButtonDemo';
@@ -69,6 +70,7 @@ function RouterApp() {
                         <nav className="main-nav">
                             <ul>
                                 <li><Link to="/">Trang chủ</Link></li>
+                                <li><Link to="/start">Bắt đầu</Link></li>
                                 <li><Link to="/buttons">Buttons</Link></li>
                                 <li><Link to="/inputs">Inputs</Link></li>
                             </ul>
@@ -80,13 +82,18 @@ function RouterApp() {
 
                 <main className="main-content">
                     <div className="container">
-                        <div className="xa:border xa:rounded-lg  xa:p-4 xa:bg-white xa:shadow-sm xa:mb-6 xa:break-all xa:w-full xa:whitespace-pre-wrap xa:text-xs xa:text-gray-700">
-                            <span className="xa:font-semibold xa:text-gray-800">Kết quả:</span>
-                            <pre className="xa:mt-1 xa:overflow-x-auto">{JSON.stringify(data, null, 2)}</pre>
-                        </div>
+                        {
+                            data &&
+                            <div className="xa:border xa:rounded-lg  xa:p-4 xa:bg-white xa:shadow-sm xa:mb-6 xa:break-all xa:w-full xa:whitespace-pre-wrap xa:text-xs xa:text-gray-700">
+                                <span className="xa:font-semibold xa:text-gray-800">Kết quả:</span>
+                                <pre className="xa:mt-1 xa:overflow-x-auto">{JSON.stringify(data, null, 2)}</pre>
+                            </div>
+                        }
+
 
                         <Routes>
                             <Route path="/sdk-page" element={<SDKPage />} />
+                            <Route path="/start" element={<Start />} />
 
                             <Route path="/" element={<Home />} />
                             <Route path="/buttons" element={<ButtonDemo />} />

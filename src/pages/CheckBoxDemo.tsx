@@ -38,27 +38,13 @@ export default function XCheckBoxDemo() {
 
             <div className={`tab-content ${activeTab === 'code' ? 'active' : ''}`}>
                 <div className="code-block">
-                    <code>{`import { XButton } from '../components/XButton';
+                    <pre><code>{`import { XCheckbox } from 'x-app-ui';
 
-// Các biến thể
-<XButton variant="primary">Primary</XButton>
-<XButton variant="secondary">Secondary</XButton>
-<XButton variant="danger">Danger</XButton>
-<XButton variant="outline">Outline</XButton>
-<XButton variant="ghost">Ghost</XButton>
-
-// Các kích thước
-<XButton variant="primary" size="small">Small</XButton>
-<XButton variant="primary" size="medium">Medium</XButton>
-<XButton variant="primary" size="large">Large</XButton>
-
-// Trạng thái
-<XButton variant="primary">Bình thường</XButton>
-<XButton variant="primary" disabled>Vô hiệu hóa</XButton>
-<XButton variant="primary">
-  <span style={{ marginRight: '0.5rem' }}>↻</span>
-  Đang tải
-</XButton>`}</code>
+// Trạng thái checkbox
+<XCheckbox value label="Mặc định" />
+<XCheckbox value={false} label="Mặc định" />
+<XCheckbox disabled label="Disabled" />
+<XCheckbox disabled value label="Disabled" />`}</code></pre>
                 </div>
             </div>
         </div>

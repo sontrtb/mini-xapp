@@ -3,12 +3,6 @@ import { XButton } from 'x-app-ui';
 import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '../components/Card';
 
 const components = [
-   {
-    name: 'SDK',
-    description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
-    path: '/sdk-page',
-  },
-  
   {
     name: 'Buttons',
     description: 'Các nút bấm với nhiều kiểu dáng và trạng thái khác nhau',
@@ -74,6 +68,11 @@ const components = [
     description: 'Hiển thị thông báo',
     path: '/toast',
   },
+  {
+    name: 'SDK',
+    description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
+    path: '/sdk-page',
+  },
 ];
 
 
@@ -86,12 +85,11 @@ export default function Home() {
           Bộ sưu tập các thành phần React đẹp, tương thích và dễ tùy chỉnh cho dự án của bạn
         </p>
         <div className="hero-buttons">
-          <XButton >
-            Bắt đầu
-          </XButton>
-          <XButton>
-            Tài liệu
-          </XButton>
+          <Link to="/start">
+            <XButton>
+              Bắt đầu
+            </XButton>
+          </Link>
         </div>
       </section>
 

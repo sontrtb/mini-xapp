@@ -49,27 +49,24 @@ export default function ToastDemo() {
 
             <div className={`tab-content ${activeTab === 'code' ? 'active' : ''}`}>
                 <div className="code-block">
-                    <code>{`import { XButton } from '../components/XButton';
+                    <pre><code>{`import { useToast, XButton } from 'x-app-ui';
 
-// Các biến thể
-<XButton variant="primary">Primary</XButton>
-<XButton variant="secondary">Secondary</XButton>
-<XButton variant="danger">Danger</XButton>
-<XButton variant="outline">Outline</XButton>
-<XButton variant="ghost">Ghost</XButton>
+const { showToast } = useToast();
 
-// Các kích thước
-<XButton variant="primary" size="small">Small</XButton>
-<XButton variant="primary" size="medium">Medium</XButton>
-<XButton variant="primary" size="large">Large</XButton>
+// Toast thành công
+<XButton onClick={() => {
+  showToast("Thông báo thành công!", { status: "success" });
+}}>Thành công</XButton>
 
-// Trạng thái
-<XButton variant="primary">Bình thường</XButton>
-<XButton variant="primary" disabled>Vô hiệu hóa</XButton>
-<XButton variant="primary">
-  <span style={{ marginRight: '0.5rem' }}>↻</span>
-  Đang tải
-</XButton>`}</code>
+// Toast thất bại
+<XButton onClick={() => {
+  showToast("Thông báo thất bại!", { status: "error" });
+}}>Thất bại</XButton>
+
+// Toast thông tin
+<XButton onClick={() => {
+  showToast("Thông báo !");
+}}>Thông tin</XButton>`}</code></pre>
                 </div>
             </div>
         </div>

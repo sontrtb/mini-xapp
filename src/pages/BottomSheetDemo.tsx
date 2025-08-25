@@ -67,27 +67,31 @@ export default function BottomSheetDemoDemo() {
 
             <div className={`tab-content ${activeTab === 'code' ? 'active' : ''}`}>
                 <div className="code-block">
-                    <code>{`import { XButton } from '../components/XButton';
+                    <pre><code>{`import { useState } from 'react';
+import { XBottomSheet, XButton } from 'x-app-ui';
 
-// Các biến thể
-<XButton variant="primary">Primary</XButton>
-<XButton variant="secondary">Secondary</XButton>
-<XButton variant="danger">Danger</XButton>
-<XButton variant="outline">Outline</XButton>
-<XButton variant="ghost">Ghost</XButton>
+const [isOpenBottomSheet, setOpenBottomSheet] = useState({
+  isOpen: false,
+  isTitle: false
+});
 
-// Các kích thước
-<XButton variant="primary" size="small">Small</XButton>
-<XButton variant="primary" size="medium">Medium</XButton>
-<XButton variant="primary" size="large">Large</XButton>
+// Bottom Sheet cơ bản
+<XButton
+  onClick={() => setOpenBottomSheet({
+    isOpen: true,
+    isTitle: false
+  })}
+>
+  Open sheet
+</XButton>
 
-// Trạng thái
-<XButton variant="primary">Bình thường</XButton>
-<XButton variant="primary" disabled>Vô hiệu hóa</XButton>
-<XButton variant="primary">
-  <span style={{ marginRight: '0.5rem' }}>↻</span>
-  Đang tải
-</XButton>`}</code>
+<XBottomSheet
+  isOpen={isOpenBottomSheet.isOpen}
+  onClose={() => setOpenBottomSheet({ isOpen: false, isTitle: false })}
+  title={isOpenBottomSheet.isTitle ? "Bottom Sheet Title" : undefined}
+>
+  <div className="xa:h-[300px] xa:px-4">Nội dung Bottom Sheet...</div>
+</XBottomSheet>`}</code></pre>
                 </div>
             </div>
         </div>

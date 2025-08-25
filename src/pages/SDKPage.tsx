@@ -12,7 +12,7 @@ import {
     vibrate,
     paymentRequest,
     EMediaType,
-    // openPickerFile,ß
+    // openPickerFile,
     call,
     sms,
     currentLocation,
