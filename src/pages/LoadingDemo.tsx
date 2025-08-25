@@ -1,9 +1,6 @@
-import { useState } from 'react';
-import { useLoading, XButton } from 'x-app-ui';
+import { useLoading, XButton, XTabBar } from 'x-app-ui';
 
 export default function LoadingDemo() {
-    const [activeTab, setActiveTab] = useState('preview');
-
     const {showLoading, hidenLoading} = useLoading()
 
     return (
@@ -11,36 +8,28 @@ export default function LoadingDemo() {
             <h2>LoadingDemo</h2>
             <p>Các nút tương tác với nhiều kiểu và trạng thái khác nhau</p>
 
-            <div className="tabs">
-                <div
-                    className={`tab ${activeTab === 'preview' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('preview')}
-                >
-                    Xem trước
-                </div>
-                <div
-                    className={`tab ${activeTab === 'code' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('code')}
-                >
-                    Code
-                </div>
-            </div>
-
-            <div className={`tab-content ${activeTab === 'preview' ? 'active' : ''}`}>
-                <div className="demo-container">
-                    <h3 className='xa:font-bold'>Nhấn nút để bật loading</h3>
-                    <div>
-                        <XButton onClick={() => {
-                            showLoading();
-                            setTimeout(hidenLoading, 3000)
-                        }}>Show loading</XButton>
-                    </div>
-                </div>
-            </div>
-
-            <div className={`tab-content ${activeTab === 'code' ? 'active' : ''}`}>
-                <div className="code-block">
-                    <pre><code>{`import { useLoading, XButton } from 'x-app-ui';
+            <XTabBar tabs={[
+                {
+                    key: "preview",
+                    label: "Xem trước",
+                    component: (
+                        <div className="demo-container">
+                            <h3 className='xa:font-bold'>Nhấn nút để bật loading</h3>
+                            <div>
+                                <XButton onClick={() => {
+                                    showLoading();
+                                    setTimeout(hidenLoading, 3000)
+                                }}>Show loading</XButton>
+                            </div>
+                        </div>
+                    )
+                },
+                {
+                    key: "code",
+                    label: "Code",
+                    component: (
+                        <div className="code-block">
+                            <pre><code>{`import { useLoading, XButton } from 'x-app-ui';
 
 const { showLoading, hidenLoading } = useLoading();
 
@@ -51,8 +40,10 @@ const { showLoading, hidenLoading } = useLoading();
 }}>
   Bật loading 3s
 </XButton>`}</code></pre>
-                </div>
-            </div>
+                        </div>
+                    )
+                }
+            ]} />
         </div>
     );
 }

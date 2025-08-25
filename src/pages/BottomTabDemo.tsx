@@ -1,10 +1,7 @@
 import { Bell, CircleUser, House } from 'lucide-react';
-import { useState } from 'react';
-import { XBottomTab } from 'x-app-ui';
+import { XBottomTab, XTabBar } from 'x-app-ui';
 
 export default function BottomTabDemo() {
-    const [activeTab, setActiveTab] = useState('preview');
-
     const bottomTabs = [
         {
             component: <div>Trang chủ</div>,
@@ -29,28 +26,18 @@ export default function BottomTabDemo() {
             <h2>BottomTabDemo</h2>
             <p>Các nút tương tác với nhiều kiểu và trạng thái khác nhau</p>
 
-            <div className="tabs">
-                <div
-                    className={`tab ${activeTab === 'preview' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('preview')}
-                >
-                    Xem trước
-                </div>
-                <div
-                    className={`tab ${activeTab === 'code' ? 'active' : ''}`}
-                    onClick={() => setActiveTab('code')}
-                >
-                    Code
-                </div>
-            </div>
-
-            <div className={`tab-content ${activeTab === 'preview' ? 'active' : ''}`}>
-                <XBottomTab tabs={bottomTabs} />
-            </div>
-
-            <div className={`tab-content ${activeTab === 'code' ? 'active' : ''}`}>
-                <div className="code-block">
-                    <pre><code>{`import { Bell, CircleUser, House } from 'lucide-react';
+            <XTabBar tabs={[
+                {
+                    key: "preview",
+                    label: "Xem trước",
+                    component: <XBottomTab tabs={bottomTabs} />
+                },
+                {
+                    key: "code",
+                    label: "Code",
+                    component: (
+                        <div className="code-block">
+                            <pre><code>{`import { Bell, CircleUser, House } from 'lucide-react';
 import { XBottomTab } from 'x-app-ui';
 
 const bottomTabs = [
@@ -73,8 +60,10 @@ const bottomTabs = [
 ];
 
 <XBottomTab tabs={bottomTabs} />`}</code></pre>
-                </div>
-            </div>
+                        </div>
+                    )
+                }
+            ]} />
         </div>
     );
 }
