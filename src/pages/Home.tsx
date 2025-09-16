@@ -1,145 +1,151 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Calendar, Clock, Heart, Activity, Plus, User } from 'lucide-react';
 import { XButton } from 'x-app-ui';
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '../components/Card';
-
-const components = [
-  {
-    name: 'Buttons',
-    description: 'Các nút bấm với nhiều kiểu dáng và trạng thái khác nhau',
-    path: '/buttons',
-  },
-  {
-    name: 'Input',
-    description: 'Trường nhập liệu văn bản với nhiều biến thể và trạng thái',
-    path: '/inputs',
-  },
-  {
-    name: 'Bottom Sheet',
-    description: 'Bảng điều khiển trượt lên từ dưới màn hình, thường dùng để hiển thị tuỳ chọn hoặc nội dung phụ',
-    path: '/bottom-sheet',
-  },
-  {
-    name: 'Modal',
-    description: 'Cửa sổ bật lên hiển thị nội dung hoặc yêu cầu người dùng tương tác',
-    path: '/modal',
-  },
-  {
-    name: 'CheckBox',
-    description: 'Ô vuông cho phép người dùng chọn một hoặc nhiều tuỳ chọn',
-    path: '/check-box',
-  },
-  {
-    name: 'Radio',
-    description: 'Nút tròn cho phép người dùng chọn một trong nhiều tuỳ chọn',
-    path: '/radio',
-  },
-  {
-    name: 'Date Picker',
-    description: 'Bộ chọn ngày cho phép người dùng chọn ngày trong lịch',
-    path: '/date-picker',
-  },
-  {
-    name: 'Bottom Tab',
-    description: 'Thanh điều hướng nằm ở dưới cùng của ứng dụng',
-    path: '/bottom-tab',
-  },
-  {
-    name: 'Switch',
-    description: 'Nút gạt chuyển đổi trạng thái giữa bật và tắt',
-    path: '/switch',
-  },
-  {
-    name: 'Slider',
-    description: 'Thanh trượt cho phép người dùng chọn giá trị trong một khoảng',
-    path: '/slider',
-  },
-  {
-    name: 'TabBar',
-    description: 'Thanh điều hướng dạng tab để chuyển đổi giữa các trang',
-    path: '/tab-bar',
-  },
-  {
-    name: 'Loading',
-    description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
-    path: '/loading',
-  },
-  {
-    name: 'Toast',
-    description: 'Hiển thị thông báo',
-    path: '/toast',
-  },
-  {
-    name: 'SDK',
-    description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
-    path: '/sdk-page',
-  },
-];
-
 
 export default function Home() {
-  return (
-    <div>
-      <section className="hero">
-        <h1>XAppUI</h1>
-        <p>
-          Bộ sưu tập các thành phần React đẹp, tương thích và dễ tùy chỉnh cho dự án của bạn
-        </p>
-        <div className="hero-buttons">
-          <Link to="/start">
-            <XButton>
-              Bắt đầu
-            </XButton>
-          </Link>
-        </div>
-      </section>
+    const [userName] = useState('Nguyễn Văn A');
 
-      <section className="demo-section">
-        <h2>Các thành phần</h2>
-        <p>Khám phá bộ sưu tập các thành phần UI của chúng tôi</p>
+    const quickActions = [
+        {
+            icon: Calendar,
+            title: 'Đặt lịch khám',
+            description: 'Đặt lịch với bác sĩ',
+            color: 'bg-blue-100 text-blue-600'
+        },
+        {
+            icon: Heart,
+            title: 'Sức khỏe',
+            description: 'Theo dõi chỉ số',
+            color: 'bg-red-100 text-red-600'
+        },
+        {
+            icon: Activity,
+            title: 'Lịch sử khám',
+            description: 'Xem lịch sử',
+            color: 'bg-green-100 text-green-600'
+        },
+        {
+            icon: User,
+            title: 'Hồ sơ',
+            description: 'Quản lý thông tin',
+            color: 'bg-purple-100 text-purple-600'
+        }
+    ];
 
-        <div className="component-grid">
-          {components.map((component) => (
-            <Card key={component.name}>
-              <CardHeader>
-                <CardTitle>{component.name}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p>{component.description}</p>
-              </CardContent>
-              <CardFooter>
-                <XButton>
-                  <Link to={component.path} style={{ color: 'inherit', textDecoration: 'none' }}>
-                    Xem chi tiết
-                  </Link>
+    const recentAppointments = [
+        {
+            doctor: 'BS. Nguyễn Thị B',
+            specialty: 'Tim mạch',
+            date: '25/09/2025',
+            time: '09:00',
+            status: 'confirmed'
+        },
+        {
+            doctor: 'BS. Trần Văn C',
+            specialty: 'Nội khoa',
+            date: '30/09/2025',
+            time: '14:30',
+            status: 'pending'
+        }
+    ];
+
+    return (
+        <div className="xa:bg-gray-50 xa:min-h-screen">
+            {/* Header */}
+            <div className="xa:bg-blue-600 xa:text-white xa:p-4">
+                <h1 className="xa:text-xl xa:font-bold">Xin chào, {userName}!</h1>
+                <p className="xa:text-blue-100">Chăm sóc sức khỏe mỗi ngày</p>
+            </div>
+
+            {/* Quick Actions */}
+            <div className="xa:p-4">
+                <h2 className="xa:text-lg xa:font-semibold xa:mb-4">Thao tác nhanh</h2>
+                <div className="xa:grid xa:grid-cols-2 xa:gap-4">
+                    {quickActions.map((action, index) => {
+                        const IconComponent = action.icon;
+                        return (
+                            <div key={index} className="xa:bg-white xa:p-4 xa:rounded-lg xa:shadow-sm xa:border xa:border-gray-200 xa:flex xa:flex-col xa:items-center xa:text-center xa:cursor-pointer xa:hover:bg-gray-50">
+                                <div className={`xa:p-3 xa:rounded-full xa:mb-2 ${action.color}`}>
+                                    <IconComponent size={24} />
+                                </div>
+                                <h3 className="xa:font-medium xa:text-gray-900">{action.title}</h3>
+                                <p className="xa:text-sm xa:text-gray-600">{action.description}</p>
+                            </div>
+                        );
+                    })}
+                </div>
+            </div>
+
+            {/* Recent Appointments */}
+            <div className="xa:p-4">
+                <div className="xa:flex xa:justify-between xa:items-center xa:mb-4">
+                    <h2 className="xa:text-lg xa:font-semibold">Lịch khám sắp tới</h2>
+                    <XButton size="small" variant="neutral" level="tertiary">
+                        Xem tất cả
+                    </XButton>
+                </div>
+
+                <div className="xa:space-y-3">
+                    {recentAppointments.map((appointment, index) => (
+                        <div key={index} className="xa:bg-white xa:p-4 xa:rounded-lg xa:shadow-sm xa:border xa:border-gray-200">
+                            <div className="xa:flex xa:justify-between xa:items-start">
+                                <div>
+                                    <h3 className="xa:font-medium xa:text-gray-900">{appointment.doctor}</h3>
+                                    <p className="xa:text-sm xa:text-gray-600">{appointment.specialty}</p>
+                                    <div className="xa:flex xa:items-center xa:mt-2 xa:text-sm xa:text-gray-500">
+                                        <Calendar size={16} className="xa:mr-1" />
+                                        {appointment.date}
+                                        <Clock size={16} className="xa:ml-3 xa:mr-1" />
+                                        {appointment.time}
+                                    </div>
+                                </div>
+                                <span className={`xa:px-2 xa:py-1 xa:rounded-full xa:text-xs xa:font-medium ${
+                                    appointment.status === 'confirmed' 
+                                        ? 'xa:bg-green-100 xa:text-green-800' 
+                                        : 'xa:bg-yellow-100 xa:text-yellow-800'
+                                }`}>
+                                    {appointment.status === 'confirmed' ? 'Đã xác nhận' : 'Chờ xác nhận'}
+                                </span>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            {/* Health Stats */}
+            <div className="xa:p-4">
+                <h2 className="xa:text-lg xa:font-semibold xa:mb-4">Chỉ số sức khỏe hôm nay</h2>
+                <div className="xa:bg-white xa:p-4 xa:rounded-lg xa:shadow-sm xa:border xa:border-gray-200">
+                    <div className="xa:grid xa:grid-cols-2 xa:gap-4">
+                        <div className="xa:text-center">
+                            <div className="xa:text-2xl xa:font-bold xa:text-red-600">120/80</div>
+                            <p className="xa:text-sm xa:text-gray-600">Huyết áp</p>
+                        </div>
+                        <div className="xa:text-center">
+                            <div className="xa:text-2xl xa:font-bold xa:text-blue-600">72</div>
+                            <p className="xa:text-sm xa:text-gray-600">Nhịp tim</p>
+                        </div>
+                        <div className="xa:text-center">
+                            <div className="xa:text-2xl xa:font-bold xa:text-green-600">36.5°C</div>
+                            <p className="xa:text-sm xa:text-gray-600">Nhiệt độ</p>
+                        </div>
+                        <div className="xa:text-center">
+                            <div className="xa:text-2xl xa:font-bold xa:text-purple-600">98%</div>
+                            <p className="xa:text-sm xa:text-gray-600">SpO2</p>
+                        </div>
+                    </div>
+                    <XButton variant="neutral" level="secondary" className="xa:w-full xa:mt-4">
+                        Cập nhật chỉ số
+                    </XButton>
+                </div>
+            </div>
+
+            {/* Quick Add Button */}
+            <div className="xa:fixed xa:bottom-20 xa:right-4">
+                <XButton variant="highlight" className="xa:rounded-full xa:w-14 xa:h-14 xa:flex xa:items-center xa:justify-center">
+                    <Plus size={24} />
                 </XButton>
-              </CardFooter>
-            </Card>
-          ))}
+            </div>
         </div>
-      </section>
-
-      <section className="demo-section">
-        <h2>Bắt đầu</h2>
-        <p>Bắt đầu sử dụng các thành phần của chúng tôi trong dự án của bạn</p>
-
-        <div className="demo-container">
-          <h3>Cài đặt</h3>
-          <div className="code-block">
-            <code>npm install x-app-ui</code>
-          </div>
-
-          <h3 style={{ marginTop: '1.5rem' }}>Sử dụng</h3>
-          <div className="code-block">
-            <code>{`import { Button } from 'x-app-ui';
-
-function App() {
-  return (
-    <Button variant="primary">Click me</Button>
-  );
-}`}</code>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
+    );
 }
