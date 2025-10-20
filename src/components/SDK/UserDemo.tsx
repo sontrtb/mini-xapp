@@ -9,13 +9,13 @@ interface UserDemoProps {
 export default function UserDemo({ onResult }: UserDemoProps) {
     const getUserInfor = async () => {
         const res = await getInfo(EKeyInfor.USER);
-        console.log("USER:", res)
+        console.log("USER:", JSON.stringify(res))
         onResult(res)
     }
 
     const getUserToken = async () => {
         const res = await getToken();
-        console.log("token:", res)
+        console.log("token:", JSON.stringify(res))
         onResult(res)
     }
 
