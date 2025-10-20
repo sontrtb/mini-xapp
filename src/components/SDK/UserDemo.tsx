@@ -1,5 +1,5 @@
 import { CircleCheck } from "lucide-react";
-import { getInfo, EKeyInfor, FlutterMessageResponse } from "x-app-sdk";
+import { getInfo, EKeyInfor, FlutterMessageResponse, getToken } from "x-app-sdk";
 import { XButton, XTabBar } from "x-app-ui";
 
 interface UserDemoProps {
@@ -9,6 +9,13 @@ interface UserDemoProps {
 export default function UserDemo({ onResult }: UserDemoProps) {
     const getUserInfor = async () => {
         const res = await getInfo(EKeyInfor.USER);
+        console.log("USER:", res)
+        onResult(res)
+    }
+
+    const getUserToken = async () => {
+        const res = await getToken();
+        console.log("token:", res)
         onResult(res)
     }
 
@@ -27,6 +34,12 @@ export default function UserDemo({ onResult }: UserDemoProps) {
                                 <p>Lấy thông tin user - Đã có cơ chế cache</p>
                             </div>
                             <XButton onClick={getUserInfor} className="xa:w-full">Thông tin user</XButton>
+
+                            <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2 xa:mt-6">
+                                <CircleCheck size={18} color="green" />
+                                <p>Lấy token</p>
+                            </div>
+                            <XButton onClick={getUserToken} className="xa:w-full">Lấy token</XButton>
                         </div>
                     )
                 },
