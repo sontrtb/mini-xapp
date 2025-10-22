@@ -9,14 +9,18 @@ interface ConfigDemoProps {
 
 export default function ConfigDemo({ onResult }: ConfigDemoProps) {
     const [headerColor, setHeaderColor] = useState("#000000");
-    const [headerTitle, setHeaderTitle] = useState("Test Header");
+    const [headerTitle, setHeaderTitle] = useState("Tiêu đề mới");
     const [headerTextColor, setHeaderTextColor] = useState("#ffffff");
+    const [headerIcon, setHeaderIcon] = useState("https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/App_Store_%28iOS%29.svg/2048px-App_Store_%28iOS%29.svg.png")
+    const [headerSubTitle, setHeaderSubTitle] = useState("Mô tả nọi dung abc")
 
     const onConfigUIApp = async () => {
         const config: IViewUiConfig = {
             headerColor,
             headerTitle,
             headerTextColor,
+            headerIcon,
+            headerSubTitle
         }
         const res = await configUIApp(config)
         onResult(res)
@@ -54,6 +58,20 @@ export default function ConfigDemo({ onResult }: ConfigDemoProps) {
                                 label="Màu chữ header"
                                 value={headerTextColor}
                                 onChange={(e) => setHeaderTextColor(e.target.value)}
+                                placeholder="#ffffff"
+                                className="xa:mb-2"
+                            />
+                            <XInput
+                                label="Subtitle"
+                                value={headerSubTitle}
+                                onChange={(e) => setHeaderSubTitle(e.target.value)}
+                                placeholder=""
+                                className="xa:mb-2"
+                            />
+                            <XInput
+                                label="Icon header"
+                                value={headerIcon}
+                                onChange={(e) => setHeaderIcon(e.target.value)}
                                 placeholder="#ffffff"
                                 className="xa:mb-2"
                             />
