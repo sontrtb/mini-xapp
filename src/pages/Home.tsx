@@ -73,11 +73,6 @@ const components = [
     description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
     path: '/sdk-page',
   },
-  {
-    name: 'Store Demo',
-    description: 'Demo lưu trữ dữ liệu với input đầu vào',
-    path: '/store',
-  },
 ];
 
 
