@@ -53,7 +53,7 @@ function StoreDemo({ onResult }: StoreDemoProps) {
     };
 
     return (
-        <div className="xa:p-4">
+        <div className="xa:py-4">
             <h1 className="xa:text-2xl xa:font-bold xa:mb-6 xa:text-primary">Store Demo</h1>
             
             <section className="xa:mb-6 xa:bg-white xa:rounded-lg xa:shadow-sm xa:p-4">
@@ -73,13 +73,14 @@ function StoreDemo({ onResult }: StoreDemoProps) {
                                     className="xa:mb-2"
                                 />
                                 
-                                <div className="xa:flex xa:gap-2 xa:mb-4">
+                                <div>
                                     <XButton
                                         state={isLoading ? "loading" : "default"}
                                         onClick={handleSaveStore}
                                     >
                                         Lưu dữ liệu
                                     </XButton>
+                                    <br />
                                     <XButton
                                         state={isLoading ? "loading" : "default"}
                                         onClick={handleGetStore}
@@ -87,6 +88,7 @@ function StoreDemo({ onResult }: StoreDemoProps) {
                                     >
                                         Lấy dữ liệu
                                     </XButton>
+                                    <br />
                                     <XButton
                                         state={isLoading ? "loading" : "default"}
                                         onClick={handleClearStore}
