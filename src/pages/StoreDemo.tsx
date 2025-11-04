@@ -81,6 +81,7 @@ function StoreDemo({ onResult }: StoreDemoProps) {
                                         Lưu dữ liệu
                                     </XButton>
                                     <br />
+                                    <br />
                                     <XButton
                                         state={isLoading ? "loading" : "default"}
                                         onClick={handleGetStore}
@@ -88,6 +89,7 @@ function StoreDemo({ onResult }: StoreDemoProps) {
                                     >
                                         Lấy dữ liệu
                                     </XButton>
+                                    <br />
                                     <br />
                                     <XButton
                                         state={isLoading ? "loading" : "default"}
