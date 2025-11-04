@@ -2,6 +2,7 @@ import LoadingDemo from '../pages/LoadingDemo';
 import SDKPage from '../pages/SDKPage';
 import ToastDemo from '../pages/ToastDemo';
 import Start from '../pages/Start';
+import StoreDemo from '../pages/StoreDemo';
 // Pages
 import Home from '../pages/Home';
 import ButtonDemo from '../pages/ButtonDemo';
@@ -94,6 +95,7 @@ function RouterApp() {
                         <Routes>
                             <Route path="/sdk-page" element={<SDKPage />} />
                             <Route path="/start" element={<Start />} />
+                            <Route path="/store" element={<StoreDemo />} />
 
                             <Route path="/" element={<Home />} />
                             <Route path="/buttons" element={<ButtonDemo />} />

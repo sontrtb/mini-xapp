@@ -11,6 +11,7 @@ import DeviceDemo from "../components/SDK/DeviceDemo";
 import LocationDemo from "../components/SDK/LocationDemo";
 import PaymentDemo from "../components/SDK/PaymentDemo";
 import APICallDemo from "../components/SDK/APICallDemo";
+import StoreDemo from "./StoreDemo";
 
 function SDKPage() {
     const [data, setData] = useState<FlutterMessageResponse>();
@@ -37,6 +38,7 @@ function SDKPage() {
             <DeviceDemo onResult={handleResult} />
             <LocationDemo onResult={handleResult} />
             <PaymentDemo onResult={handleResult} />
+            <StoreDemo onResult={handleResult} />
             <APICallDemo onResult={handleResult} />
         </div>
     )
