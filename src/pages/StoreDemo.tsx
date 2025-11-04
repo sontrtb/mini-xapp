@@ -77,14 +77,12 @@ function StoreDemo({ onResult }: StoreDemoProps) {
                                     <XButton
                                         state={isLoading ? "loading" : "default"}
                                         onClick={handleSaveStore}
-                                        className="xa:flex-1"
                                     >
                                         Lưu dữ liệu
                                     </XButton>
                                     <XButton
                                         state={isLoading ? "loading" : "default"}
                                         onClick={handleGetStore}
-                                        className="xa:flex-1"
                                         variant="neutral"
                                     >
                                         Lấy dữ liệu
@@ -92,7 +90,6 @@ function StoreDemo({ onResult }: StoreDemoProps) {
                                     <XButton
                                         state={isLoading ? "loading" : "default"}
                                         onClick={handleClearStore}
-                                        className="xa:flex-1"
                                         variant="danger"
                                     >
                                         Xóa tất cả
