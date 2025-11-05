@@ -15,7 +15,7 @@ function StoreDemo({ onResult }: StoreDemoProps) {
     const handleSaveStore = async () => {
         setIsLoading(true);
         try {
-            const res = await saveStore(value);
+            const res = await saveStore("key", value);
             setResult(res as FlutterMessageResponse);
             if (onResult) onResult(res as FlutterMessageResponse);
         } catch (error) {
@@ -27,7 +27,7 @@ function StoreDemo({ onResult }: StoreDemoProps) {
     const handleGetStore = async () => {
         setIsLoading(true);
         try {
-            const res = await getStore();
+            const res = await getStore("key");
             setResult(res as FlutterMessageResponse);
             if (res.data) {
                 setRetrievedData(res.data);
@@ -42,7 +42,7 @@ function StoreDemo({ onResult }: StoreDemoProps) {
     const handleClearStore = async () => {
         setIsLoading(true);
         try {
-            const res = await clearStore();
+            const res = await clearStore("key");
             setResult(res as FlutterMessageResponse);
             setRetrievedData("");
             if (onResult) onResult(res as FlutterMessageResponse);
