@@ -19,6 +19,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useToast } from 'x-app-ui';
 import { useEffect, useState } from 'react';
 import { fltSDK, FlutterMessageResponse, IPaymentResult, listenNotifiactionEvent, listenPaymentEvent } from 'x-app-sdk';
+import IFame from '../pages/IFame';
 
 function RouterApp() {
     const { showToast } = useToast()
@@ -109,6 +110,7 @@ function RouterApp() {
                             <Route path="/tab-bar" element={<TabBarDemo />} />
                             <Route path="/loading" element={<LoadingDemo />} />
                             <Route path="/toast" element={<ToastDemo />} />
+                            <Route path="/i-frame" element={<IFame />} />
                         </Routes>
                     </div>
                 </main>

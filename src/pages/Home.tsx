@@ -73,6 +73,11 @@ const components = [
     description: 'Hiển thị tiến trình tải hoặc xử lý dữ liệu',
     path: '/sdk-page',
   },
+  {
+    name: 'IFame',
+    description: 'IFame',
+    path: '/i-frame',
+  },
 ];
 
 
