@@ -12,6 +12,7 @@ import LocationDemo from "../components/SDK/LocationDemo";
 import PaymentDemo from "../components/SDK/PaymentDemo";
 import APICallDemo from "../components/SDK/APICallDemo";
 import StoreDemo from "./StoreDemo";
+import DownloadFileDemo from "../components/SDK/DownloadFileDemo";
 
 function SDKPage() {
     const [data, setData] = useState<FlutterMessageResponse>();
@@ -40,6 +41,7 @@ function SDKPage() {
             <PaymentDemo onResult={handleResult} />
             <StoreDemo onResult={handleResult} />
             <APICallDemo onResult={handleResult} />
+            <DownloadFileDemo />
         </div>
     )
 }
