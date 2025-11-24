@@ -1,5 +1,5 @@
 import { CircleCheck } from "lucide-react";
-import { premissionsRequest, ETypeRequest, FlutterMessageResponse } from "x-app-sdk";
+import { premissionsRequest, ETypeRequest, FlutterMessageResponse, openPermisstionScreen } from "x-app-sdk";
 import { XButton, XTabBar } from "x-app-ui";
 
 interface PermissionDemoProps {
@@ -27,6 +27,12 @@ export default function PermissionDemo({ onResult }: PermissionDemoProps) {
                                 <p>Quyền từng sự kiện</p>
                             </div>
                             <XButton onClick={requestPermisstion} className="xa:w-full">Kiểm tra quyền</XButton>
+                            <br />
+                            <div className="xa:flex xa:items-center xa:gap-2 xa:mb-2">
+                                <CircleCheck size={18} color="green" />
+                                <p>Mở màn phân quyền</p>
+                            </div>
+                            <XButton onClick={openPermisstionScreen} className="xa:w-full">Mở</XButton>
                         </div>
                     )
                 },

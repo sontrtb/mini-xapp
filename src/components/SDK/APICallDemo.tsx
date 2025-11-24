@@ -1,4 +1,4 @@
-import { CircleCheck, Plus, LogIn } from "lucide-react";
+import { CircleCheck, Plus, LogIn, Send } from "lucide-react";
 import { useState } from "react";
 import { EStatus, ETypeResponse, FlutterMessageResponse } from "x-app-sdk";
 import { XButton, XTabBar, XInput } from "x-app-ui";
@@ -15,6 +15,48 @@ export default function APICallDemo({ onResult }: APICallDemoProps) {
     const [userImage, setUserImage] = useState("");
     const [loginUsername, setLoginUsername] = useState("0983541031");
     const [loginPassword, setLoginPassword] = useState("3ea87a56da3844b420ec2925ae922bc731ec16a4fc44dcbeafdad49b0e61d39c");
+    // State cho tab post form data
+    const [formName, setFormName] = useState("");
+    const [formAvatar, setFormAvatar] = useState("");
+    const [isFormLoading, setIsFormLoading] = useState(false);
+  // Hàm gửi form data (multipart/form-data)
+  const postFormData = async () => {
+    if (!formName.trim() || !formAvatar.trim()) {
+      onResult({
+        status: EStatus.ERROR,
+        type: ETypeResponse.ResponseCall,
+        data: { message: "Vui lòng nhập đầy đủ thông tin" }
+      });
+      return;
+    }
+    setIsFormLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append("name", formName);
+      formData.append("image", formAvatar);
+      const response = await fetch("https://68ef738db06cc802829d72fe.mockapi.io/user", {
+        method: "POST",
+        body: formData
+      });
+      const result = await response.json();
+      onResult({
+        status: EStatus.SUCCESS,
+        type: ETypeResponse.ResponseCall,
+        data: result,
+      });
+      setFormName("");
+      setFormAvatar("");
+    } catch (error) {
+      console.log("error", error)
+      onResult({
+        status: EStatus.ERROR,
+        type: ETypeResponse.ResponseCall,
+        data: { message: "Lỗi khi gửi form data" }
+      });
+    } finally {
+      setIsFormLoading(false);
+    }
+  };
 
     const callApi = async () => {
         setIsLoading(true)
@@ -27,7 +69,7 @@ export default function APICallDemo({ onResult }: APICallDemoProps) {
                 data: result,
             })
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        } catch (error) {
+        } catch (_) {
             onResult({
                 status: EStatus.ERROR,
                 type: ETypeResponse.ResponseCall,
@@ -137,7 +179,7 @@ export default function APICallDemo({ onResult }: APICallDemoProps) {
         <section className="xa:mb-10 xa:bg-white xa:rounded-lg xa:shadow-sm xa:p-4">
             <h2 className='xa:text-xl xa:font-bold xa:mb-2 xa:text-primary'>API Call</h2>
             
-            <XTabBar tabs={[
+            <XTabBar tabs={[ 
                 {
                     key: "get",
                     label: "GET API",
@@ -158,40 +200,72 @@ export default function APICallDemo({ onResult }: APICallDemoProps) {
                     )
                 },
                 {
-                    key: "post",
-                    label: "POST API",
-                    component: (
-                        <div className="demo-container">
-                            <div className="xa:flex xa:items-center xa:gap-2 xa:mb-4">
-                                <Plus size={18} color="blue" />
-                                <p>Tạo user mới với API POST</p>
-                            </div>
-                            
-                            <div className="xa:space-y-3 xa:mb-4">
-                                <XInput
-                                    placeholder="Nhập tên user"
-                                    value={userName}
-                                    onChange={(e) => setUserName(e.target.value)}
-                                    className="xa:w-full"
-                                />
-                                <XInput
-                                    placeholder="Nhập URL hình ảnh"
-                                    value={userImage}
-                                    onChange={(e) => setUserImage(e.target.value)}
-                                    className="xa:w-full"
-                                />
-                            </div>
-                            
-                            <XButton
-                                state={isPostLoading ? "loading" : "default"}
-                                onClick={createUser}
-                                className="xa:w-full"
-                                disabled={!userName.trim() || !userImage.trim()}
-                            >
-                                Tạo User
-                            </XButton>
-                        </div>
-                    )
+                  key: "post",
+                  label: "POST API",
+                  component: (
+                    <div className="demo-container">
+                      <div className="xa:flex xa:items-center xa:gap-2 xa:mb-4">
+                        <Plus size={18} color="blue" />
+                        <p>Tạo user mới với API POST (JSON)</p>
+                      </div>
+                      <div className="xa:space-y-3 xa:mb-4">
+                        <XInput
+                          placeholder="Nhập tên user"
+                          value={userName}
+                          onChange={(e) => setUserName(e.target.value)}
+                          className="xa:w-full"
+                        />
+                        <XInput
+                          placeholder="Nhập URL hình ảnh"
+                          value={userImage}
+                          onChange={(e) => setUserImage(e.target.value)}
+                          className="xa:w-full"
+                        />
+                      </div>
+                      <XButton
+                        state={isPostLoading ? "loading" : "default"}
+                        onClick={createUser}
+                        className="xa:w-full"
+                        disabled={!userName.trim() || !userImage.trim()}
+                      >
+                        Tạo User
+                      </XButton>
+                    </div>
+                  )
+                },
+                {
+                  key: "post-form",
+                  label: "POST Form Data",
+                  component: (
+                    <div className="demo-container">
+                      <div className="xa:flex xa:items-center xa:gap-2 xa:mb-4">
+                        <Send size={18} color="purple" />
+                        <p>Gửi user bằng form-data (multipart/form-data)</p>
+                      </div>
+                      <div className="xa:space-y-3 xa:mb-4">
+                        <XInput
+                          placeholder="Nhập tên user"
+                          value={formName}
+                          onChange={(e) => setFormName(e.target.value)}
+                          className="xa:w-full"
+                        />
+                        <XInput
+                          placeholder="Nhập URL hình ảnh"
+                          value={formAvatar}
+                          onChange={(e) => setFormAvatar(e.target.value)}
+                          className="xa:w-full"
+                        />
+                      </div>
+                      <XButton
+                        state={isFormLoading ? "loading" : "default"}
+                        onClick={postFormData}
+                        className="xa:w-full"
+                        disabled={!formName.trim() || !formAvatar.trim()}
+                      >
+                        Gửi Form Data
+                      </XButton>
+                    </div>
+                  )
                 },
                 {
                     key: "login",
