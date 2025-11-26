@@ -15,23 +15,24 @@ function StoreDemo({ onResult }: StoreDemoProps) {
     const handleSaveStore = async () => {
         setIsLoading(true);
         try {
-            console.log("sdsdsd")
+            console.log("starting saveStore flow")
 
-            saveStore("key", value);
+            await saveStore("key", value);
             console.log("saveStore key")
 
-            saveStore("key1", "valuek1");
+            await saveStore("key1", "valuek1");
             console.log("saveStore key1")
 
-            const res = await getStore("key")
-            console.log("sdsdsd", res)
-            
+            const res = await getStore("key");
+            console.log("getStore result", res)
+
             setResult(res as FlutterMessageResponse);
             if (onResult) onResult(res as FlutterMessageResponse);
         } catch (error) {
             console.error("Save store error:", error);
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     };
 
     const handleGetStore = async () => {
@@ -45,8 +46,9 @@ function StoreDemo({ onResult }: StoreDemoProps) {
             if (onResult) onResult(res as FlutterMessageResponse);
         } catch (error) {
             console.error("Get store error:", error);
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     };
 
     const handleClearStore = async () => {
@@ -58,8 +60,9 @@ function StoreDemo({ onResult }: StoreDemoProps) {
             if (onResult) onResult(res as FlutterMessageResponse);
         } catch (error) {
             console.error("Clear store error:", error);
+        } finally {
+            setIsLoading(false);
         }
-        setIsLoading(false);
     };
 
     return (
