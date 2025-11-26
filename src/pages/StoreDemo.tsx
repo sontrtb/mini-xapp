@@ -15,9 +15,17 @@ function StoreDemo({ onResult }: StoreDemoProps) {
     const handleSaveStore = async () => {
         setIsLoading(true);
         try {
+            console.log("sdsdsd")
+
             saveStore("key", value);
-            saveStore("key1", value);
-            const res = await getStore("key1")
+            console.log("saveStore key")
+
+            saveStore("key1", "valuek1");
+            console.log("saveStore key1")
+
+            const res = await getStore("key")
+            console.log("sdsdsd", res)
+            
             setResult(res as FlutterMessageResponse);
             if (onResult) onResult(res as FlutterMessageResponse);
         } catch (error) {
