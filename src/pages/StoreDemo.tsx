@@ -10,7 +10,7 @@ const getLocalStorage = async (key: string, isParse = false) => {
     try {
 
 
-        const result = await getStore(key, "022290372090755696"); // SDK trả về { data: '...' }
+        const result = await getStore(key); // SDK trả về { data: '...' }
         if (!result || !result.data) {
             console.log(`[getLocalStorage] ⚠️ No data found for key: ${key}`);
             return null;
@@ -39,7 +39,7 @@ const setLocalStorage = async (key: string, val: string) => {
             val = JSON.stringify(val);
         }
 
-        await saveStore(key, String(val), "022290372090755696");
+        await saveStore(key, String(val));
         console.log(`[setLocalStorage] ✅ Saved: ${key} : ${JSON.stringify(val)}`);
     } catch (error) {
         console.log(`[setLocalStorage] ❌ Error saving ${key}:`, JSON.stringify(error));
@@ -73,7 +73,7 @@ function StoreDemo({ onResult }: StoreDemoProps) {
     const handleGetStore = async () => {
         setIsLoading(true);
         try {
-            const res = await getStore("key" ,"022290372090755696");
+            const res = await getStore("key");
             setResult(res as FlutterMessageResponse);
             if (res.data) {
                 setRetrievedData(res.data);
