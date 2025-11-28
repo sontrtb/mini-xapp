@@ -6,34 +6,62 @@ interface StoreDemoProps {
     onResult?: (data: FlutterMessageResponse) => void;
 }
 
+const getLocalStorage = async (key: string, isParse = false) => {
+    try {
+
+
+        const result = await getStore(key); // SDK trả về { data: '...' }
+        if (!result || !result.data) {
+            console.log(`[getLocalStorage] ⚠️ No data found for key: ${key}`);
+            return null;
+        }
+
+        let value = result.data;
+        if (isParse && typeof value === 'string') {
+            try {
+                value = JSON.parse(value);
+            } catch {
+                // Nếu không phải JSON, giữ nguyên
+            }
+        }
+
+        console.log(`[getLocalStorage] ✅ Got: ${key}`, JSON.stringify(value));
+        return value;
+    } catch (error) {
+        console.log(`[getLocalStorage] ❌ Error getting ${key}:`, JSON.stringify(error));
+        return null;
+    }
+};
+
+const setLocalStorage = async (key: string, val: string) => {
+    try {
+        if (typeof val === 'object') {
+            val = JSON.stringify(val);
+        }
+
+        await saveStore(key, String(val));
+        console.log(`[setLocalStorage] ✅ Saved: ${key} : ${JSON.stringify(val)}`);
+    } catch (error) {
+        console.log(`[setLocalStorage] ❌ Error saving ${key}:`, JSON.stringify(error));
+    }
+};
+
 function StoreDemo({ onResult }: StoreDemoProps) {
     const [isLoading, setIsLoading] = useState(false);
     const [value, setValue] = useState("demo_value");
     const [retrievedData, setRetrievedData] = useState<string>("");
     const [result, setResult] = useState<FlutterMessageResponse | null>(null);
 
-    const handleSaveStore = async () => {
-        setIsLoading(true);
-        try {
-            console.log("starting saveStore flow")
+   async function handleSaveStore() {
+     await setLocalStorage("KEY_SEARCH_STRING", "SEARCH_STRING")
 
-            await saveStore("key", value);
-            console.log("saveStore key")
+    await setLocalStorage("KEY_PLAN_TYPE", "PLAN_TYPE")
 
-            await saveStore("key1", "valuek1");
-            console.log("saveStore key1")
 
-            const res = await getStore("key");
-            console.log("getStore result", res)
+    const searchString = await getLocalStorage("KEY_SEARCH_STRING", true)
 
-            setResult(res as FlutterMessageResponse);
-            if (onResult) onResult(res as FlutterMessageResponse);
-        } catch (error) {
-            console.error("Save store error:", error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+    console.log(searchString);
+}
 
     const handleGetStore = async () => {
         setIsLoading(true);
