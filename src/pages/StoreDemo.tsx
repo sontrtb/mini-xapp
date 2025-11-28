@@ -53,12 +53,19 @@ function StoreDemo({ onResult }: StoreDemoProps) {
     const [result, setResult] = useState<FlutterMessageResponse | null>(null);
 
    async function handleSaveStore() {
+    console.log("handleSaveStore")
      await setLocalStorage("KEY_SEARCH_STRING", "SEARCH_STRING")
+
+     console.log("handleSaveStore111111")
 
     await setLocalStorage("KEY_PLAN_TYPE", "PLAN_TYPE")
 
+    console.log("handleSaveStore222")
+
 
     const searchString = await getLocalStorage("KEY_SEARCH_STRING", true)
+
+    console.log("handleSaveStore3333")
 
     console.log(searchString);
 }
