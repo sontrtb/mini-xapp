@@ -18,7 +18,7 @@ import TabBarDemo from '../pages/TabBarDemo';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { useToast } from 'x-app-ui';
 import { useEffect, useState } from 'react';
-import { fltSDK, FlutterMessageResponse, IPaymentResult, listenNotifiactionEvent, listenPaymentEvent } from 'x-app-sdk';
+import { fltSDK, FlutterMessageResponse, IPaymentResult, listenNotifiactionEvent, listenPaymentEvent, listenFocusEvent } from 'x-app-sdk';
 import IFame from '../pages/IFame';
 
 function RouterApp() {
@@ -32,6 +32,12 @@ function RouterApp() {
             event.data?.status ? "Thanh toán thành công" : "Thanh toán thất bại",
             { status: event.data?.status ? "success" : "error" }
         );
+    }
+
+    // Lắng nghe focus
+    const handelEVventFocus = (event: FlutterMessageResponse) => {
+        setData(event)
+        console.log("focus:", new Date())
     }
 
     const handelNoti = (event: FlutterMessageResponse) => {
@@ -52,9 +58,12 @@ function RouterApp() {
             handelNoti(data)
         }, fltSDK);
 
+        const unsubscribeFocus = listenFocusEvent(handelEVventFocus, fltSDK);
+
         return () => {
             unsubscribePayment();
             unsubscribeNoti();
+            unsubscribeFocus();
         };
     }, [showToast]);
 
