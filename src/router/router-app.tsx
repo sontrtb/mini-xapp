@@ -20,6 +20,7 @@ import { useToast } from 'x-app-ui';
 import { useEffect, useState } from 'react';
 import { fltSDK, FlutterMessageResponse, IPaymentResult, listenNotifiactionEvent, listenPaymentEvent, listenFocusEvent } from 'x-app-sdk';
 import IFame from '../pages/IFame';
+import config from '../../config.json'
 
 function RouterApp() {
     const { showToast } = useToast()
@@ -68,7 +69,7 @@ function RouterApp() {
     }, [showToast]);
 
     return (
-        <Router basename={import.meta.env.VITE_PRE_PATH}>
+        <Router basename={config.prePath}>
             <div>
                 <header className="header">
                     <div className="container header-container">
