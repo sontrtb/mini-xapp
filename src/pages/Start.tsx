@@ -94,7 +94,7 @@ import { XButton, XInput } from 'x-app-ui';
                         <code>
                             {
                                 `
-                                 <Router basename={import.meta.env.VITE_PRE_PATH}>
+                                 <HashRouter basename={import.meta.env.VITE_PRE_PATH}>
                                 `
                             }
                         </code>

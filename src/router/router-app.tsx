@@ -15,7 +15,7 @@ import BottomTabDemo from '../pages/BottomTabDemo';
 import SwitchDemo from '../pages/SwitchDemo';
 import SliderDemo from '../pages/SliderDemo';
 import TabBarDemo from '../pages/TabBarDemo';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { HashRouter, Routes, Route, Link } from 'react-router-dom';
 import { useToast } from 'x-app-ui';
 import { useEffect, useState } from 'react';
 import { fltSDK, FlutterMessageResponse, IPaymentResult, listenNotifiactionEvent, listenPaymentEvent, listenFocusEvent } from 'x-app-sdk';
@@ -68,7 +68,7 @@ function RouterApp() {
     }, [showToast]);
 
     return (
-        <Router basename={import.meta.env.VITE_PRE_PATH}>
+        <HashRouter basename={import.meta.env.VITE_PRE_PATH}>
             <div>
                 <header className="header">
                     <div className="container header-container">
@@ -131,7 +131,7 @@ function RouterApp() {
                     </div>
                 </footer>
             </div>
-        </Router>
+        </HashRouter>
     )
 }
 export default RouterApp
