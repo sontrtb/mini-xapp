@@ -3,13 +3,13 @@
     "appId": "045d34e9-f37c-4403-9af8-f1212c539a8a",
     "name": "Mini App Test",
     "versionName": "1.0.0",
-    "versionCode": 3,
-    "changeLog": "Cập nhật",
+    "versionCode": 5,
+    "changeLog": "Cập nhật hash router",
     "targetEnv": "SANDBOX"
   },
   "command": {
     "build": "npm run build",
     "buildPath": "dist"
   },
-  "prePath": "/"
+  "prePath": "/api/file/public/preview/miniapps/045d34e9-f37c-4403-9af8-f1212c539a8a/extracted/v5"
 }
