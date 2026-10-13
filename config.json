@@ -11,5 +11,5 @@
     "build": "npm run build",
     "buildPath": "dist"
   },
-  "prePath": "/api/file/public/preview/miniapps/045d34e9-f37c-4403-9af8-f1212c539a8a/extracted/v3"
+  "prePath": "/"
 }
